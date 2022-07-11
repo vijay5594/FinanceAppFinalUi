@@ -1,0 +1,20 @@
+ion-tab-button[aria-selected='true'] {
+  color: #6807F9;
+}
+ion-card {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+ion-label {
+  
+  font-weight:800;
+}
+ ion-item {
+  --inner-border-width: 0;
+   padding-right: 8px;
+    margin: 0 0 0 0;
+}
+.navbarcolor{
+  --background: #001D6E;
+}

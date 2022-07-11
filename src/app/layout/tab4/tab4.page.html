@@ -1,0 +1,47 @@
+<ion-content>
+    <h2>Payment History</h2>
+    <h5 *ngIf="_data == false" class="isDataNot ion-margin-top"> No Data Found</h5>
+
+
+
+    <div *ngFor="let item of _data | slice:0:1; let i = index;">
+        <ion-text color="primary">
+            <h4 style="text-align: right;" class="ion-margin">{{ item.customerName }}</h4>
+            <h6 style="text-align: right;" class="ion-margin">{{ item.productName }}</h6>
+        </ion-text>
+    </div>
+
+
+
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let item of _data; let i = index;">
+                <ion-card class="ion-padding ion-margin-top">
+                    <!-- <ion-item>
+                        <ion-icon slot="start" name="person"></ion-icon>
+                        <ion-label class="labelText">
+                            {{item.customerName}}<br />
+                        </ion-label>
+                    </ion-item> -->
+                    <ion-item>
+                        <ion-icon slot="start" name="calendar"></ion-icon>
+                        <ion-label class="labelText"> {{ convert(item.paymentDate) }}</ion-label>
+                    </ion-item>
+                    <!-- <ion-item>
+                        <ion-icon slot="start" name="albums-outline"></ion-icon>
+                        <ion-label class="labelText">
+                            {{item.productName}}
+                        </ion-label>
+                    </ion-item> -->
+                    <ion-item>
+                        <ion-icon slot="start" name="cash"></ion-icon>
+                        <ion-label class="labelText">
+                            {{item.paidAmount}}
+                        </ion-label>
+                        <p>{{item.collectedBy}}</p>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

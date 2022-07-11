@@ -1,0 +1,7 @@
+{
+  "name": "top-glove",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,33 @@
+<ion-content>
+    <ion-grid>
+        <div *ngFor="let item of _data; let i = index;">
+            <ion-card class="ion-padding ion-margin-top">
+                <ion-item>
+                    <ion-icon slot="start" name="person"></ion-icon>
+                    <ion-label class="labelText">
+                        {{item.productName}}
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-icon slot="start" name=""></ion-icon>
+                    <ion-label class="labelText">
+                        {{item.slotNo}}
+                        <br />
+                        {{item.productCustomerId}}
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-button fill="outline" class="saveButton" color="tertiary"
+                        (click)="getHistory(item.productCustomerId)">
+                        Select Cus
+                        <!-- <ion-icon name="person-add" slot="start"></ion-icon> -->
+                    </ion-button>
+                    <ion-button fill="outline" class="saveButton" slot="end" id="list{{item.productCustomerId}}">
+                        Pay
+                        <ion-icon name="person-add" slot="start"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-card>
+        </div>
+    </ion-grid>
+</ion-content>

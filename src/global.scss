@@ -1,0 +1,112 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.text-center {
+  text-align: center;
+}
+
+.offset-bottom {
+  --offset-bottom: 56px !important;
+}
+
+.btn-fill {
+  --color: #fff !important;
+}
+
+.btn-outline {
+  --color-activated: #fff !important;
+}
+
+.small-icon {
+  font-size: 25px;
+}
+
+.note-text {
+  font-size: 12px;
+}
+
+.app-update-toast {
+  --color: #fff;
+  --ion-color-contrast: #fff !important;
+}
+
+.no-bottom-margin {
+  margin-bottom: 0 !important;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.font-md {
+  font-size: 20px !important;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+  margin-top: 0 !important;
+}
+
+.mat-expansion-panel {
+  margin-top: 10px !important;
+}
+
+.control-error {
+  color: red;
+  padding-bottom: 5px;
+}
+
+.logo {
+  height: 70px;
+}
+
+.logo-large {
+  height: 100px;
+}
+
+.text-wrap {
+  white-space: unset !important;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flot-right {
+  float: right;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.bg-none {
+  background: none !important;
+}
+$primary-color: #001d6e;
