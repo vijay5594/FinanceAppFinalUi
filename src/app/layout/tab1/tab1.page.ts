@@ -24,6 +24,9 @@ export class Tab1Page implements OnInit {
     updateForm: FormGroup;
     filterArray: any;
     IsStatus: any;
+    loginForm: FormGroup;
+    isUsername: boolean = true;
+    
 
     constructor(private apiService: ApiService,
         private modal: ModalController,
@@ -35,6 +38,7 @@ export class Tab1Page implements OnInit {
         this.generateProductForm();
         this.getDetails();
         this.updateProductForm();
+        this.generateLoginForm();
     }
     ngOnInit(): void {
         this.segment = 'Chit';
@@ -43,6 +47,13 @@ export class Tab1Page implements OnInit {
         this.generateProductForm();
         this.updateProductForm();
         this.getDetails();
+    }
+    generateLoginForm = () => {
+        this.loginForm = this.fb.group({
+            userName: ['', Validators.required],
+            password: ['', Validators.required],
+            role: ['', Validators.required]
+        });
     }
     generateProductForm = () => {
         this.productDetailsForm = this.fb.group({
@@ -69,6 +80,16 @@ export class Tab1Page implements OnInit {
             isStatus: ['']
 
         });
+    }
+    addNewUser() {
+        this.apiService.addUser(this.loginForm.value).subscribe((newData: any) => {
+            this.loginForm.reset();
+            this.modal.dismiss().then(() => {
+                window.location.reload();
+            });
+        });
+        this.notificationService.success('User Created Successfully');
+
     }
     addProductDetails() {
         this.apiService.insertProduct(this.productDetailsForm.value).subscribe((data: any) => {
@@ -105,6 +126,23 @@ export class Tab1Page implements OnInit {
             });
         }
     }
+    checkUser() {
+        this.isShowError = false
+        this.isUsername = true;
+        if (this.s.userName.invalid) {
+            return;
+        } else {
+            this.apiService.existUserName(this.s.userName.value).subscribe(userData => {
+                console.log(userData,"fdfdfdsfg")
+                if (userData['message'] == 'You Can Enter') {
+                    this.isUsername = false
+                } else {
+                    this.isUsername = true;
+                    this.isShowError = true
+                }
+            });
+        }
+    }
     SearchFunction(event) {
         let val = event.target.value;
         this.filterArray = this.productDetails;
@@ -113,15 +151,29 @@ export class Tab1Page implements OnInit {
         });
     }
     get f() { return this.productDetailsForm.controls; }
+
+    get s() { return this.loginForm.controls; }
+
+
     convert(data: any): string {
         return moment(data).format('D-MMM-YYYY');
     }
     onClose() {
         this.modal.dismiss();
+        this.loginForm.reset();
+        this.productDetailsForm.reset();
         this.getDetails();
+        
     }
     thisFormValid() {
         if (this.productDetailsForm.valid) {
+            return true
+        } else {
+            return false
+        }
+    }
+    thisFormValids() {
+        if (this.loginForm.valid) {
             return true
         } else {
             return false

@@ -21,6 +21,8 @@ img{
   }
 form {
     margin-top: 20px !important;
+    
+
   }
 }
 .login-card ion-input ion-icon {
@@ -56,6 +58,7 @@ form {
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
+
 }
 .login-card a:hover {
   opacity: 1;
@@ -84,4 +87,5 @@ ion-item {
   ion-select {
     margin: auto;
   }
+
 }

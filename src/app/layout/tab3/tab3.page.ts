@@ -229,6 +229,7 @@ export class Tab3Page implements OnInit {
     }
     onClose() {
         this.modal.dismiss();
+        this.customerForm.reset();
         this.loadMorePosts('');
     }
     thisFormValid() {
