@@ -61,70 +61,50 @@ export class Tab3Page implements OnInit {
         this.generateCustomerForm();
         this.generateDetails();
         this.getCustomerDetail();
-        console.log('came');
-    }
-
+        }
     ionViewWillLeave() {
     }
-
     getCustomerDetail = () => {
         this.apiService.getProductDetailsById(localStorage.getItem('productId')).subscribe(data => {
-            console.log(data, 'dfffffff')
             this.pName = data[0] ?.productName;
-            console.log(data, "iuhfjhedjkgsdjkhjk")
         });
     }
-
     loadMorePosts(event) {
         this.apiService.CustomerPagination(this.page).subscribe((data: any) => {
             setTimeout(() => {
-                console.log(data, "first");
                 for (let i = 0; i < data.length; i++) {
                     this.arrayData.push(data[i]);
                     this.filterToPush = this.arrayData;
                 }
                 event.target ?.complete();
                 this.page++;
-
             }, 800);
         });
-
     }
-
     doInfinite(event) {
         if (event) {
-            console.log(event, 'first')
             let value = event.target.value;
-            console.log(value, 'search')
             this.apiService.FilterCustomerSearch(value).subscribe((data: any) => {
                 this.filterToPush = data;
                 this.infiniteScroll.disabled = true;
             });
         }
         if (event.target.value === '' || undefined) {
-            console.log('geetha')
             window.location.reload();
-            console.log(this.filterToPush, 'last')
             this.loadMorePosts(event);
-
         }
     }
-
     getFileDownload(id: any) {
         return this.http.get('https://localhost:5001/api/Fileupload/DownloadFile?id=' + id, { responseType: 'blob' }).subscribe((event) => {
             FileSaver.saveAs(event);
-
         });
     }
     async presentAlertConfirm(data: any, custName: any) {
-
         let payload = {
             'createdBy': this.currentUser,
             'customerId': data,
-            // 'productId': this.userService.getProductId(),
             'productId': localStorage.getItem('productId')
         }
-
         const alert = await this.alertController.create({
             cssClass: "my-custom-class",
             message: "Are you sure want to add " + custName + " to " + this.pName,
@@ -140,7 +120,6 @@ export class Tab3Page implements OnInit {
                     text: "Okay",
                     handler: () => {
                         this.apiService.insertProductCustomer(payload).subscribe((data: any) => {
-                            console.log(data)
                             this.toast.success('Added Successfully');
                             this.router.navigate(['/tabs/tab1']);
                         },
@@ -156,12 +135,9 @@ export class Tab3Page implements OnInit {
         await alert.present();
     }
     customerHistory(data: any) {
-        console.log(data, 'cus')
         this.userService.customer = data;
         this.apiService.productForCustomerDetails(data).subscribe(data => {
-            console.log(data, 'data')
             this.router.navigate(['/tabs/tab6']);
-
         });
     }
     generateCustomerForm = () => {
@@ -191,12 +167,9 @@ export class Tab3Page implements OnInit {
             referredBy: ['', Validators.required],
             attachmentId: [''],
             attachmentName: [''],
-            // status: ['']
         });
     }
-
     get f() { return this.customerForm.controls; }
-
     save(customerForm: any) {
         customerForm.attachmentId = this.attachmentId;
         this.apiService.insertCustomer(this.customerForm.value).subscribe(data => {
@@ -205,11 +178,9 @@ export class Tab3Page implements OnInit {
             this.modal.dismiss().then(() => {
                 window.location.reload();
             });
-            //this.getCustomerDetail();
             this.loadMorePosts('');
         });
     }
-
     uploadcandidateFile = (fileChangeEvent: any) => {
         const photo = fileChangeEvent.target.files[0];
         const formData = new FormData();
@@ -234,7 +205,6 @@ export class Tab3Page implements OnInit {
             });
         }
     }
-
     CheckAdharNumber() {
         this.isShowErrors = false
         this.ischeckAdharNumber = true;
@@ -251,19 +221,16 @@ export class Tab3Page implements OnInit {
             });
         }
     }
-
     validateNumber(e) {
         const keyCode = e.keyCode;
         if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8) {
             e.preventDefault();
         }
     }
-
     onClose() {
         this.modal.dismiss();
         this.loadMorePosts('');
     }
-
     thisFormValid() {
         if (this.customerForm.valid) {
             return true
@@ -273,24 +240,13 @@ export class Tab3Page implements OnInit {
     }
     updateCustomer(update: any) {
         this.apiService.updateCustomer(this.updateForm.value).subscribe(data => {
-            console.log(data, 'hello')
             this.toast.success('Added Successfully');
             this.modal.dismiss();
             this.loadMorePosts('');
-            //this.getCustomerDetail();
         }, (error: Response) => {
-          if (error.status === 400) {
-            this.notificationService.error("Mobile Number or Aadhar Number Exists Already!")
-          }
+            if (error.status === 400) {
+                this.notificationService.error("Mobile Number Already Exists")
+            }
         });
     }
-    // statusForm(event) {
-    //   this.status = event.target.value;
-    //   this._data = {
-    //     ...this.updateForm,
-    //     Status: this.status
-    //   }
-    //   console.log(this.status, 'status')
-    // }
-
 }

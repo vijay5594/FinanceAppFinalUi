@@ -12,19 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./layout/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'edit-entity',
-    loadChildren: () => import('./modules/edit-entity/edit-entity.module').then(m => m.EditEntityPageModule),
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'tab5',
-    loadChildren: () => import('./layout/tab5/tab5.module').then(m => m.Tab5PageModule)
-  },
+ 
   {
     path: 'tab6',
     loadChildren: () => import('./layout/tab6/tab6.module').then(m => m.Tab6PageModule)
-  },  {
+  },
+  {
     path: 'tab7',
     loadChildren: () => import('./layout/tab7/tab7.module').then( m => m.Tab7PageModule)
   }

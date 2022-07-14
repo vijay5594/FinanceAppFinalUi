@@ -27,14 +27,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
   generateLoginForm = () => {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
-
   doLogin(loginForm: any) {
     this.apiService.doLogin(this.loginForm.value).subscribe((data) => {
       if (data) {
@@ -61,7 +59,6 @@ export class LoginPage implements OnInit {
         this.toast.error('Unable to validate user. Please try agian after sometime.');
       });
   }
-
   thisFormValid() {
     if (this.loginForm.valid) {
       return true

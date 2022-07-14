@@ -15,13 +15,11 @@ export class Tab7Page implements OnInit {
         private router: Router,
         private apiService: ApiService) {
         this.paymentDetails();
-
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
     }
-
     _payload: any
     from: string = moment().format();
     to: string = moment().format();
@@ -46,17 +44,10 @@ export class Tab7Page implements OnInit {
             'toDate': new Date(this.to),
         }
         this.apiService.filterItem(payload).subscribe(data => {
-            console.log(data, 'pay')
             this.allPaymentDetails = data;
         });
         this.apiService.paymenthistory(payload).subscribe((amount: any) => {
-
-            console.log(amount, "amount")
-            this.totalAmount = amount[0].totalAmount;
-            console.log(this.totalAmount, "total")
-            console.log(typeof(this.totalAmount), "total")
-
+            this.totalAmount = amount;
         });
-
     }
 }

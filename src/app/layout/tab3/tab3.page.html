@@ -1,18 +1,12 @@
-<ion-searchbar *ngIf="!searchvalue" type="search"  class="ion-margin-top"  (ionChange)="doInfinite($event)"></ion-searchbar>
+<ion-searchbar *ngIf="!searchvalue" type="search" class="ion-margin-top" (ionChange)="doInfinite($event)">
+</ion-searchbar>
 <h5 *ngIf="filterToPush == false" class="isDataNot"> No Data Found</h5>
-
 <ion-content>
-    <!-- <ion-list-header>
-        <ion-label>Welcome {{ currentUser }} !!! </ion-label>
-    </ion-list-header> -->
     <ion-fab horizontal="end" vertical="bottom" slot="fixed" class="ion-margin-top">
         <ion-fab-button id="triggerbutton_one">
             <ion-icon size="large" name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-   
-
-   
     <ion-grid>
         <ion-row>
             <ion-col *ngFor="let item of filterToPush ; let i = index;" size="12" size-sm="6" size-md="6" size-lg="4">
@@ -20,15 +14,9 @@
                     <ion-item>
                         <ion-label class="labelText">
                             {{item.customerName}}
-
                         </ion-label>
-                        <!-- <ion-button fill="outline" slot="end" id="trigger-button{{i}}">
-                                <ion-icon name="create"></ion-icon>
-                            </ion-button> -->
-
                         <ion-chip color="tertiary" id="edit-customer{{i}}">
                             <ion-label>Edit</ion-label>
-                            <!-- <ion-icon color="tertiary" name="pencil"></ion-icon> -->
                         </ion-chip>
                         <ion-modal trigger="edit-customer{{i}}">
                             <ng-template>
@@ -36,7 +24,6 @@
                                     <h1>Edit Customer</h1>
                                 </div>
                                 <ion-content>
-
                                     <ion-grid>
                                         <form [formGroup]="updateForm">
                                             <ion-row class="hiddenText">
@@ -107,12 +94,11 @@
                                                 <ion-col>
                                                     <ion-item lines="none">
                                                         <ion-label position="stacked">Additional Mobile No</ion-label>
-                                                        <ion-input type="tel" formControlName="additionalMobileNumber" placeholder="Optional"
-                                                        minlength="10"    maxlength="10"   (keydown)="validateNumber($event)">
+                                                        <ion-input type="tel" formControlName="additionalMobileNumber"
+                                                            placeholder="Optional" minlength="10" maxlength="10"
+                                                            (keydown)="validateNumber($event)">
                                                         </ion-input>
                                                     </ion-item>
-                                                   
-                                                   
                                                 </ion-col>
                                             </ion-row>
                                             <ion-row>
@@ -120,7 +106,7 @@
                                                     <ion-item lines="none">
                                                         <ion-label position="stacked">Adhaar Number</ion-label>
                                                         <ion-input type="text" [(ngModel)]="item.aadharNumber"
-                                                            formControlName="aadharNumber" placeholder="" minlength="12"
+                                                            formControlName="aadharNumber" placeholder="Enter Aadhar Number" minlength="12"
                                                             maxlength="12" (keydown)="validateNumber($event)" disabled>
                                                         </ion-input>
                                                     </ion-item>
@@ -138,9 +124,7 @@
                                                         </ion-input>
                                                     </ion-item>
                                                 </ion-col>
-
                                             </ion-row>
-
                                             <ion-row>
                                                 <ion-col>
                                                     <ion-item lines="none">
@@ -150,23 +134,7 @@
                                                         </ion-input>
                                                     </ion-item>
                                                 </ion-col>
-
                                             </ion-row>
-                                            <!-- <ion-row>
-                                                <ion-col>
-                                                    <ion-item lines="none">
-                                                        <ion-label position="stacked">Status</ion-label>
-                                                        <ion-select placeholder="Status"
-                                                            (ionChange)="statusForm($event)" formControlName="status"
-                                                            [(ngModel)]="item.status">
-                                                            <ion-select-option value="open">Inprogress
-                                                            </ion-select-option>
-                                                            <ion-select-option value="Complete">Complete
-                                                            </ion-select-option>
-                                                        </ion-select>
-                                                    </ion-item>
-                                                </ion-col>
-                                            </ion-row> -->
                                             <ion-row class="paddingOnSide">
                                                 <ion-col>
                                                     <ion-button expand="block" (click)="onClose()" color="danger">
@@ -181,7 +149,6 @@
                                         </form>
                                     </ion-grid>
                                 </ion-content>
-
                             </ng-template>
                         </ion-modal>
                     </ion-item>
@@ -210,17 +177,7 @@
                             <p> {{ item.attachmentName }}</p>
                         </ion-label>
                     </ion-item>
-
-
-
-
-
-
                     <ion-item>
-                        <!-- <ion-button fill="outline" slot="end" (click)="presentAlertConfirm(item.customerId)">add
-                                cust
-                                <ion-icon name="person-sharp"></ion-icon>
-                            </ion-button> -->
                         <ion-chip color="tertiary" slot="end"
                             (click)="presentAlertConfirm(item.customerId, item.customerName)">
                             <ion-icon name="person" color="primary"></ion-icon>
@@ -230,9 +187,6 @@
                             <ion-icon name="people" color="primary"></ion-icon>
                             <ion-label color="teritary">Details</ion-label>
                         </ion-chip>
-                        <!-- <ion-button fill="outline" (click)="customerHistory(item.customerId)">History
-                                <ion-icon name="person-sharp"></ion-icon>
-                            </ion-button> -->
                     </ion-item>
                 </ion-card>
             </ion-col>
@@ -242,9 +196,6 @@
             </ion-infinite-scroll-content>
         </ion-infinite-scroll>
     </ion-grid>
-
-
-
 </ion-content>
 <ion-modal trigger="triggerbutton_one">
     <ng-template>
@@ -317,12 +268,10 @@
                     <ion-col>
                         <ion-item lines="none">
                             <ion-label position="stacked">Additional Mobile No</ion-label>
-                            <ion-input type="tel" formControlName="additionalMobileNumber" placeholder="Optional" minlength="10"
-                            maxlength="10"   (keydown)="validateNumber($event)">
+                            <ion-input type="tel" formControlName="additionalMobileNumber" placeholder="Optional"
+                                minlength="10" maxlength="10" (keydown)="validateNumber($event)">
                             </ion-input>
                         </ion-item>
-                       
-                       
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -330,7 +279,7 @@
                         <ion-item lines="none">
                             <ion-label position="stacked">Adhaar Number</ion-label>
                             <ion-input type="tel" (ionChange)="CheckAdharNumber()" formControlName="aadharNumber"
-                                placeholder="98..........." minlength="12" maxlength="12"
+                                placeholder="Enter Aadhar Number" minlength="12" maxlength="12"
                                 (keydown)="validateNumber($event)">
                             </ion-input>
                         </ion-item>
@@ -351,17 +300,16 @@
                         <span class="text-danger" *ngIf="!customerForm.controls['fileUpload'].valid && 
         customerForm.controls['fileUpload']?.touched"> File is required *</span>
                     </ion-col>
-
                 </ion-row>
-                <ion-row class="ion-margin-top buttonCenter">
+                <ion-row class="paddingOnSide">
                     <ion-col>
-                        <ion-item lines="none">
-                            <ion-button class="saveButton" (click)="onClose()" color="danger">
+                       
+                            <ion-button  expand="block" (click)="onClose()" color="danger">
                                 Cancel</ion-button>
-                        </ion-item>
+                        
                     </ion-col>
                     <ion-col>
-                        <ion-button class="saveButton" color="tertiary" type="submit" [disabled]="!thisFormValid()">
+                        <ion-button expand="block" color="tertiary" type="submit" [disabled]="!thisFormValid()">
                             Save</ion-button>
                     </ion-col>
                 </ion-row>

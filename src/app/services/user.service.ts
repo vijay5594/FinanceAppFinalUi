@@ -31,10 +31,6 @@ export class UserService {
         this._isSuperUser = iSuperUser === 'true';
       }
 
-      // const role = localStorage.getItem('workStation');
-      // if (role) {
-      //   this._role = role;
-      // }
     }
   }
 
