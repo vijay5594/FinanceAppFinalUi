@@ -2,9 +2,7 @@ ion-card {
     border-radius: 18px;
     box-shadow: #64646f33 0 7px 29px;
 }
-ion-content {
-    --background: #f9f9fc;
-}
+
 p {
     color: #001d6e;
 }
@@ -19,7 +17,7 @@ ion-select {
     margin-top: 1rem;
     border: 0.5px solid #c7d1ef;
     --padding-start: 15px !important;
-    background-color: #ffffff;
+   // background-color: #ffffff;
 }
 p {
     font-weight: 600;

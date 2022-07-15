@@ -61,7 +61,7 @@ export class Tab3Page implements OnInit {
         this.generateCustomerForm();
         this.generateDetails();
         this.getCustomerDetail();
-        }
+    }
     ionViewWillLeave() {
     }
     getCustomerDetail = () => {
@@ -145,7 +145,7 @@ export class Tab3Page implements OnInit {
             customerName: ['', Validators.required],
             guarantorName: ['', Validators.required],
             address: ['', Validators.required],
-            mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+            mobileNumber: ['', [Validators.required]],
             additionalMobileNumber: [''],
             aadharNumber: ['', Validators.required],
             referredBy: ['', Validators.required],
@@ -223,7 +223,7 @@ export class Tab3Page implements OnInit {
     }
     validateNumber(e) {
         const keyCode = e.keyCode;
-        if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8) {
+        if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8 && e.keyCode != 9) {
             e.preventDefault();
         }
     }

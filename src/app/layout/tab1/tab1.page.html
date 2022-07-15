@@ -3,78 +3,6 @@
         <ion-icon size="large" name="add"></ion-icon>
     </ion-fab-button>
 </ion-fab>
-<div>
-
-    <ion-button class="loginbtn" style="float:right" color="primary" type="submit" id="trigger-user" slot="end">Add New User
-    </ion-button>
-</div>
-<ion-modal trigger="trigger-user">
-    <ng-template>
-        <div style="background-color: #001D6E;" class="app-header">
-            <h1 style="color: #fff;">Add New User</h1>
-        </div>
-        <ion-content>
-            <ion-grid class="ion-no-margin scrollbar" id="style-1">
-
-                <form [formGroup]="loginForm" (ngSubmit)="addNewUser()">
-                  
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">UserName</ion-label>
-                                <ion-input type="text" formControlName="userName" (ionChange)="checkUser()"
-                                    placeholder="Enter UserName">
-                                </ion-input>
-                            </ion-item>
-                            <span class="alert-danger" *ngIf="isShowError == true">
-                                <b>Already Exist Enter valid UserName</b>
-                            </span>
-                            <span class="text-danger" *ngIf="!loginForm.controls['userName'].valid && 
-                      loginForm.controls['userName']?.touched">UserName is Required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Password
-                                </ion-label>
-                                <ion-input type="text" placeholder="Enter Password" formControlName="password">
-                                </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['password'].valid && 
-                            loginForm.controls['password']?.touched">UserName is Required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Role</ion-label>
-                                <ion-select placeholder="Role" formControlName="role">
-                                    <ion-select-option value="Admin">Admin</ion-select-option>
-                                    <ion-select-option value="operator">operator</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['role'].valid && 
-                            loginForm.controls['role']?.touched">Role is Required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row class="paddingOnSide">
-                        <ion-col>
-                            <ion-button (click)="onClose()" expand="block" color="danger">
-                                Cancel
-                            </ion-button>
-                        </ion-col>
-                        <ion-col>
-                            <ion-button color="tertiary" expand="block" type="submit" [disabled]="!thisFormValids()">
-                                Save
-                            </ion-button>
-                        </ion-col>
-                    </ion-row>
-                </form>
-            </ion-grid>
-        </ion-content>
-    </ng-template>
-</ion-modal>
 
 <ion-segment class="ion-margin-top" (ionChange)="segmentChanged($event)" value="Chit">
     <ion-segment-button value="Chit">
@@ -251,7 +179,7 @@
                             </ion-item>
                             <ion-item>
                                 <ion-label class="ion-text-wrap">
-                                    <p>Tenure {{ item.productTenure }} Months</p>
+                                    <p>Tenure &nbsp;&nbsp;{{ item.productTenure }} &nbsp;&nbsp;Months</p>
                                 </ion-label>
                             </ion-item>
                             <ion-item>

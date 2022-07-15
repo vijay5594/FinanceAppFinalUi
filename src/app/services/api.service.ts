@@ -53,10 +53,22 @@ export class ApiService {
         const url = this.loginApiUrl('AddUser');
         return this.http.post(url, params);
     }
+    getAllUserDetails() {
+        const url = this.loginApiUrl('GetAllUsers')
+        return this.http.get(url);
+    }
+    updateUser = (params: any): Observable<any> => {
+        const url = this.loginApiUrl('UpdateUser');
+        return this.http.put(url, params);
+    }
+    deleteUser = (params: any): Observable<any> => {
+        const url = this.loginApiUrl('DeleteUser?id=' + params);
+        return this.http.delete(url);
+    }
     existUserName(exist: any) {
-      const url = this.loginApiUrl('UserExist?obj=')
-      return this.http.get(url + exist);
-  }
+        const url = this.loginApiUrl('UserExist?obj=')
+        return this.http.get(url + exist);
+    }
     insertProduct = (params: any): Observable<any> => {
         const url = this.getProductApiUrl('AddNewProduct');
         return this.http.post(url, params);

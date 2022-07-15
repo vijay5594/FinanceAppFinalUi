@@ -20,7 +20,11 @@ const routes: Routes = [
   {
     path: 'tab7',
     loadChildren: () => import('./layout/tab7/tab7.module').then( m => m.Tab7PageModule)
+  },  {
+    path: 'tab5',
+    loadChildren: () => import('./layout/tab5/tab5.module').then( m => m.Tab5PageModule)
   }
+
 
 ];
 @NgModule({
