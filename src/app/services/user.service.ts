@@ -14,6 +14,8 @@ export class UserService {
   private _payment: any = null
   public currentProductId: any;
   public CurrentCustomerId: any;
+  private _Users: any = null;
+  public UserId: any;
 
   constructor() {
     this.load();
@@ -70,9 +72,20 @@ export class UserService {
     localStorage.setItem('Role', role);
     this._role = role;
   }
+  get Users(): any {
+    return this._Users;
+  }
+
+  set Users(user: any) {
+    localStorage.setItem('userId', user);
+    this._Users = user;
+  }
   reload() {
     window.location.reload();
   }
+
+
+  
 
   get Product(): string {
     return this._ProductId;
@@ -112,7 +125,12 @@ export class UserService {
   }
    getCustomerId():string {
     return this.CurrentCustomerId;
-    
+  }
+  setUserId(params: any) {
+    this.UserId = params;
+  }
+   getUserId():string {
+    return this.UserId;
   }
 
 }

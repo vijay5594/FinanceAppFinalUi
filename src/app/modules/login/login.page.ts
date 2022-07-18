@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
         console.log(data);
         this.userService.User = data.userName;
         this.userService.Role = data.role;
+        this.userService.Users=data.userId;
         if (data.role == "Admin") {
           this.userService.IsSuperUser = false;
           this.loadingService.hide();

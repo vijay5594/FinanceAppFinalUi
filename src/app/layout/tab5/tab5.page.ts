@@ -15,9 +15,10 @@ export class Tab5Page implements OnInit {
     loginForm: FormGroup;
     isShowError: boolean = false;
     isUsername: boolean = true;
-    userDetails: any;
+    userDetails: any[];
     updateUserForm: FormGroup;
-
+    currentUser: string = localStorage.getItem('userName');
+    UserId: string = localStorage.getItem('userId');
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -67,8 +68,12 @@ export class Tab5Page implements OnInit {
     }
     GetAllUsers() {
 
-        this.apiService.getAllUserDetails().subscribe((data: any) => {
+        this.apiService.GetUser(this.UserId).subscribe((data: any[]) => {
+        console.log(data,"gufrsgrdhgdth")
+        console.log(typeof(data),"gufrsgrfgffdgfgfdgdhgdth")
             this.userDetails = data;
+            console.log(this.userDetails,"gggdfdefsdfdsfsdfsdfsdfsdfdsfdsf")
+            
 
         });
     }

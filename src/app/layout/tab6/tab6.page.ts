@@ -7,6 +7,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 
+
+
 @Component({
     selector: 'app-tab6',
     templateUrl: './tab6.page.html',
@@ -30,6 +32,8 @@ export class Tab6Page implements OnInit {
         public alertController: AlertController,
         private userService: UserService,
         public notificationService: NotificationService,
+       
+        
     ) {
         this.getProductDetails();
         this.generatePaymentForm();
@@ -58,6 +62,7 @@ export class Tab6Page implements OnInit {
     payFormValue() {
         this.apiService.paymentDetails(this.paymentForm.value).subscribe(data => {
             this.notificationService.success('Paid successfully')
+          
             this.router.navigate(['tabs/tab1']);
         });
         this.modal.dismiss();

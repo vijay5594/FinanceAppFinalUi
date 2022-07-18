@@ -49,6 +49,10 @@ export class ApiService {
         const url = this.loginApiUrl('GetLogin');
         return this.http.post(url, params);
     }
+    GetUser = (params: any): Observable<any> => {
+        const url = this.loginApiUrl('GetUser?data=');
+        return this.http.get(url + params);
+    }
     addUser = (params: any): Observable<any> => {
         const url = this.loginApiUrl('AddUser');
         return this.http.post(url, params);
