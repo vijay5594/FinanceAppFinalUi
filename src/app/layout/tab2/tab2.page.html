@@ -32,18 +32,11 @@
             </ion-label>
           </ion-item>
           <ion-item>
-            <ion-chip
-              color="tertiary"
-              (click)="getHistory(item.productCustomerId)"
-            >
+            <ion-chip color="tertiary" (click)="getHistory(item.productCustomerId)">
               <ion-icon name="person" color="primary"></ion-icon>
               <ion-label color="teritary">Details</ion-label>
             </ion-chip>
-            <ion-chip
-              color="tertiary"
-              slot="end"
-              id="PayListDetails{{item.productCustomerId}}"
-            >
+            <ion-chip color="tertiary" slot="end" id="PayListDetails{{item.productCustomerId}}">
               <ion-label color="teritary">Collect</ion-label>
             </ion-chip>
           </ion-item>
@@ -59,58 +52,34 @@
                   <ion-row>
                     <ion-col>
                       <ion-label>Amount</ion-label>
-                      <ion-input
-                        type="text"
-                        formControlName="paidAmount"
-                      ></ion-input>
-                      <span
-                        class="text-danger"
-                        *ngIf="!paymentForm.controls['paidAmount'].valid && 
-                                        paymentForm.controls['paidAmount']?.touched"
-                        >Payment Amount is required *</span
-                      >
+                      <ion-input type="text" formControlName="paidAmount"></ion-input>
+                      <span class="text-danger" *ngIf="!paymentForm.controls['paidAmount'].valid && 
+                                        paymentForm.controls['paidAmount']?.touched">Payment Amount is required
+                        *</span>
                     </ion-col>
                     <ion-col style="visibility: hidden; display: none">
-                      <ion-input
-                        type="text"
-                        disabled
-                        formControlName="productCustomerId"
-                        [(ngModel)]="item.productCustomerId"
-                      ></ion-input>
+                      <ion-input type="text" disabled formControlName="productCustomerId"
+                        [(ngModel)]="item.productCustomerId"></ion-input>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
                       <ion-col>
                         <ion-label>Payment Type</ion-label>
-                        <ion-select
-                          placeholder="Payment Type"
-                          formControlName="paymentType"
-                        >
-                          <ion-select-option value="Cash"
-                            >Cash</ion-select-option
-                          >
-                          <ion-select-option value="Cash"
-                            >Online</ion-select-option
-                          >
+                        <ion-select placeholder="Payment Type" formControlName="paymentType">
+                          <ion-select-option value="Cash">Cash</ion-select-option>
+                          <ion-select-option value="Cash">Online</ion-select-option>
                         </ion-select>
-                        <span
-                          class="text-danger"
-                          *ngIf="!paymentForm.controls['paymentType'].valid && 
-                                            paymentForm.controls['paymentType']?.touched"
-                          >Product Type is required *</span
-                        >
+                        <span class="text-danger" *ngIf="!paymentForm.controls['paymentType'].valid && 
+                                            paymentForm.controls['paymentType']?.touched">Product Type is required
+                          *</span>
                       </ion-col>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
                       <ion-label>Collected By</ion-label>
-                      <ion-input
-                        type="text"
-                        disabled
-                        formControlName="collectedBy"
-                      >
+                      <ion-input type="text" disabled formControlName="collectedBy">
                       </ion-input>
                     </ion-col>
                   </ion-row>
@@ -120,15 +89,10 @@
               <ion-row class="ion-justify-content-center ion-margin-top">
                 <ion-col>
                   <ion-button expand="block" (click)="onClose()" color="danger">
-                    Cancel</ion-button
-                  >
+                    Cancel</ion-button>
                 </ion-col>
                 <ion-col>
-                  <ion-button
-                    (click)="payFormValue()"
-                    expand="block"
-                    [disabled]="!thisFormValid()"
-                  >
+                  <ion-button (click)="payFormValue()" expand="block" [disabled]="!thisFormValid()">
                     ₹ &nbsp;Pay
                   </ion-button>
                 </ion-col>

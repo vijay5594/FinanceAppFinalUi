@@ -6,10 +6,12 @@ ion-card {
 p {
   color: #001d6e;
 }
+
 h1 {
   color: #ffffff;
   font-weight: 800;
 }
+
 ion-input,
 ion-textarea,
 ion-select {
@@ -18,26 +20,31 @@ ion-select {
   border: 0.5px solid #c7d1ef;
   --padding-start: 15px !important;
 }
+
 p {
   font-weight: 600;
   margin: 0 0 0 0;
   color: #001d6e !important;
 }
+
 ion-item {
   --inner-border-width: 0;
   padding-right: 10px;
   margin: 0 0 0 0;
 }
+
 ion-label {
   font-weight: 600;
   margin: 0 0 0 0;
   color: #001d6e !important;
 }
+
 h2 {
   text-align: center;
   font-weight: 900;
   color: #001d6e;
 }
+
 .filterpanel ion-item {
   border-radius: 20px;
   // box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -45,13 +52,16 @@ h2 {
   --inner-border-width: 0;
   // padding: 0px !important;
 }
+
 .filterpanel ion-label {
   padding-left: 12px;
   margin-bottom: 8px;
 }
+
 .filterpanel ion-input {
   cursor: pointer;
 }
+
 span {
   font-family: fantasy;
 }

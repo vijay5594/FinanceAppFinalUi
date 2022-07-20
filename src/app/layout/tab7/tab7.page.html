@@ -5,18 +5,11 @@
       <ion-col size="6" size-sm="2.5">
         <ion-label>Start date</ion-label>
         <ion-item id="open-date-input-11" lines="none">
-          <ion-text class="cursor"
-            >{{ convertedFrom || currentdateFrom }}</ion-text
-          >
+          <ion-text class="cursor">{{ convertedFrom || currentdateFrom }}</ion-text>
           <ion-popover trigger="open-date-input-11">
             <ng-template>
-              <ion-datetime
-                [(ngModel)]="from"
-                display-format="YYYY-MM-DD"
-                #popoverDatetime11
-                presentation="date-time"
-                (ionChange)="convertedFrom = convert(popoverDatetime11.value)"
-              >
+              <ion-datetime [(ngModel)]="from" display-format="YYYY-MM-DD" #popoverDatetime11 presentation="date-time"
+                (ionChange)="convertedFrom = convert(popoverDatetime11.value)">
               </ion-datetime>
             </ng-template>
           </ion-popover>
@@ -28,32 +21,20 @@
           <ion-text class="cursor">{{ convertedTo || currentdateTo }}</ion-text>
           <ion-popover trigger="open-date-input-22">
             <ng-template>
-              <ion-datetime
-                [(ngModel)]="to"
-                #popoverDatetime22
-                presentation="date-time"
-                (ionChange)="convertedTo = convert(popoverDatetime22.value)"
-              >
+              <ion-datetime [(ngModel)]="to" #popoverDatetime22 presentation="date-time"
+                (ionChange)="convertedTo = convert(popoverDatetime22.value)">
               </ion-datetime>
             </ng-template>
           </ion-popover>
         </ion-item>
       </ion-col>
-      <ion-col
-        size="4"
-        size-sm="2"
-        class="ion-align-self-end ion-justify-content-center"
-      >
-        <ion-button (click)="paymentDetails()" expand="block" color="primary"
-          >Filter</ion-button
-        >
+      <ion-col size="4" size-sm="2" class="ion-align-self-end ion-justify-content-center">
+        <ion-button (click)="paymentDetails()" expand="block" color="primary">Filter</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid>
-    <ion-label
-      >Total Amount Collected: <span>₹</span> {{totalAmount}}</ion-label
-    >
+    <ion-label>Total Amount Collected: <span>₹</span> {{totalAmount}}</ion-label>
     <ion-row>
       <ion-col *ngFor="let item of allPaymentDetails; let i = index;">
         <ion-card class="cardPattern ion-padding ion-margin-top">

@@ -2,32 +2,15 @@
   <div class="login-card">
     <img slot="start" src="../../../assets/icon/images.png" />
     <form (ngSubmit)="doLogin(loginForm.value)" [formGroup]="loginForm" padding>
-      <ion-input
-        required
-        type="text"
-        placeholder="UserName"
-        name="userName"
-        formControlName="userName"
-      >
+      <ion-input required type="text" placeholder="UserName" name="userName" formControlName="userName">
         <ion-icon name="person-outline"></ion-icon>
       </ion-input>
-      <ion-input
-        class="passcode"
-        required
-        type="password"
-        placeholder="password"
-        name="password"
-        formControlName="password"
-      >
+      <ion-input class="passcode" required type="password" placeholder="password" name="password"
+        formControlName="password">
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-input>
       <div class="ion-padding-top">
-        <ion-button
-          expand="block"
-          type="submit"
-          [disabled]="!thisFormValid()"
-          class="ion-no-margin btn-fill"
-          >Login
+        <ion-button expand="block" type="submit" [disabled]="!thisFormValid()" class="ion-no-margin btn-fill">Login
         </ion-button>
       </div>
     </form>
