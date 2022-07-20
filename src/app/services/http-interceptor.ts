@@ -3,7 +3,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } fro
 import { Observable } from 'rxjs';
 import { AuthCookie } from './auth-cookie-handler';
 
-
 @Injectable()
 export class GlobalHTTPInterceptor implements HttpInterceptor {
     constructor(private authCookie: AuthCookie) { }

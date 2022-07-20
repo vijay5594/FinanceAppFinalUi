@@ -17,33 +17,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab1Page } from './layout/tab1/tab1.page';
 
-
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-    ServiceWorkerModule.register('./ngsw-worker.js', {
-      enabled: environment.production,
-      registrationStrategy: 'registerImmediately'
-    }),
+        ServiceWorkerModule.register('./ngsw-worker.js', {
+            enabled: environment.production,
+            registrationStrategy: 'registerImmediately'
+        }),
 
-    BrowserAnimationsModule,
-    HammerModule
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalHTTPInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent]
+        BrowserAnimationsModule,
+        HammerModule
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        { provide: HTTP_INTERCEPTORS, useClass: GlobalHTTPInterceptor, multi: true },
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { 
-  
+export class AppModule {
+
 }

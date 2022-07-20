@@ -1,23 +1,29 @@
-<ion-header class="ion-no-border" style="--background: #001D6E;">
+<ion-header class="ion-no-border" style="--background: #001d6e">
   <ion-item class="navbarcolor">
     <ion-avatar slot="end">
-      <img src="../../../assets/man2.png" id="hover-trigger">
+      <img src="../../../assets/man2.png" id="hover-trigger" />
     </ion-avatar>
-    <ion-label style="color: white;text-align: center;">SK ENTERPRISES</ion-label>
+    <ion-label style="color: white; text-align: center"
+      >SK ENTERPRISES</ion-label
+    >
   </ion-item>
 </ion-header>
 <ion-popover trigger="hover-trigger" trigger-action="hover">
   <ng-template>
     <ion-item lines="none">
       <ion-icon slot="start" name="person"></ion-icon>
-      <p style="color: #5c84f5; margin: 0 0 0 0;">{{ currentUser }}</p>
+      <p style="color: #5c84f5; margin: 0 0 0 0">{{ currentUser }}</p>
     </ion-item>
     <ion-item lines="none">
       <ion-icon slot="start" name="desktop"></ion-icon>
-      <p style="color: #5c84f5; margin: 0 0 0 0;">{{ role }}</p>
+      <p style="color: #5c84f5; margin: 0 0 0 0">{{ role }}</p>
     </ion-item>
     <ion-item lines="none">
-      <ion-button (click)="logout()" style="padding-right: 10px;" class="primary">
+      <ion-button
+        (click)="logout()"
+        style="padding-right: 10px"
+        class="primary"
+      >
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         Logout
       </ion-button>
@@ -28,7 +34,7 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="tab1" refresh>
-        <ion-icon class="navBarIcon"  name="albums-outline"></ion-icon>
+        <ion-icon class="navBarIcon" name="albums-outline"></ion-icon>
         <ion-label>Product</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="tab3">
