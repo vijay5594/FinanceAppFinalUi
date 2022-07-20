@@ -69,6 +69,10 @@ export class ApiService {
         const url = this.loginApiUrl('DeleteUser?id=' + params);
         return this.http.delete(url);
     }
+    CheckUser = (params: any): Observable<any> => {
+        const url = this.loginApiUrl('CheckUser?id=' + params);
+        return this.http.get(url);
+    }
     existUserName(exist: any) {
         const url = this.loginApiUrl('UserExist?obj=')
         return this.http.get(url + exist);

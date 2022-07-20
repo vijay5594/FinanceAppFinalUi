@@ -1,313 +1,449 @@
 <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button id="trigger">
-        <ion-icon size="large" name="add"></ion-icon>
-    </ion-fab-button>
+  <ion-fab-button id="trigger">
+    <ion-icon size="large" name="add"></ion-icon>
+  </ion-fab-button>
 </ion-fab>
-
-<ion-segment class="ion-margin-top" (ionChange)="segmentChanged($event)" value="Chit">
-    <ion-segment-button value="Chit">
-        <ion-label>
-            CHIT
-        </ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="KulukKal">
-        <ion-label>
-            KULUKKAL
-        </ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="rd">
-        <ion-label>
-            RD
-        </ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="loan">
-        <ion-label>
-            LOAN
-        </ion-label>
-    </ion-segment-button>
+<ion-segment
+  class="ion-margin-top"
+  (ionChange)="segmentChanged($event)"
+  value="Chit"
+>
+  <ion-segment-button value="Chit">
+    <ion-label> CHIT </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="KulukKal">
+    <ion-label> KULUKKAL </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="rd">
+    <ion-label> RD </ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="loan">
+    <ion-label> LOAN </ion-label>
+  </ion-segment-button>
 </ion-segment>
-<ion-searchbar class="ion-margin-top" (ionChange)="SearchFunction($event)"></ion-searchbar>
+<ion-searchbar
+  class="ion-margin-top"
+  (ionChange)="SearchFunction($event)"
+></ion-searchbar>
 <ion-content>
-    <ion-grid>
-        <ion-row *ngIf="segment == 'Chit' || 'KulukKal' || 'rd' || 'loan'">
-            <ng-container *ngFor="let item of filterArray; let i = index;">
-                <ion-col size="12" size-sm="6" size-md="6" size-lg="4" *ngIf="segment == item.productType">
-                    <div>
-                        <ion-card class="ion-padding">
-                            <ion-item>
-                                <ion-label class="labelText">
-                                    {{item.productName}}
-                                </ion-label>
-                                <ion-chip color="tertiary" id="trigger-button{{i}}">
-                                    <ion-label>Edit</ion-label>
-                                </ion-chip>
-                                <ion-modal trigger="trigger-button{{i}}">
-                                    <ng-template>
-                                        <div style="background-color: #001D6E;" class="app-header">
-                                            <h1 style="color: #fff;">Edit Product</h1>
-                                        </div>
-                                        <ion-content id="style-1">
-                                            <ion-grid>
-                                                <form [formGroup]="updateForm"
-                                                    (ngSubmit)="updateProduct(updateForm.value)">
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Product Name
-                                                                </ion-label>
-                                                                <ion-input type="text" [(ngModel)]="item.productName"
-                                                                    formControlName="productName">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                            <span class="alert-danger" *ngIf="isShowError == true">
-                                                                <b>Already Exist Enter valid Product Name</b>
-                                                            </span>
-                                                            <span class="text-danger" *ngIf="!updateForm.controls['productName'].valid && 
-                                                        updateForm.controls['productName']?.touched"> Quantity is
-                                                                required *</span>
-                                                        </ion-col>
-                                                        <ion-col style="visibility: hidden; display: none;">
-                                                            <ion-input type="number" [(ngModel)]="item.productId"
-                                                                formControlName="productId">
-                                                            </ion-input>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Product Type
-                                                                </ion-label>
-                                                                <ion-input formControlName="productType" disabled
-                                                                    [(ngModel)]="item.productType">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">No Of Customers
-                                                                </ion-label>
-                                                                <ion-input type="number"
-                                                                    [(ngModel)]="item.noOfCustomers"
-                                                                    formControlName="noOfCustomers" disabled
-                                                                    placeholder="No Of Customers">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                            <span class="text-danger" *ngIf="!updateForm.controls['noOfCustomers'].valid && 
-                                        updateForm.controls['noOfCustomers']?.touched"> Quantity is required *</span>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Product Tenure
-                                                                </ion-label>
-                                                                <ion-input type="number"
-                                                                    [(ngModel)]="item.productTenure"
-                                                                    formControlName="productTenure"
-                                                                    placeholder="Product Tenure">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                            <span class="text-danger" *ngIf="!updateForm.controls['productTenure'].valid && 
-                                        updateForm.controls['productTenure']?.touched"> Tenure is Required *</span>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Price in Rupees
-                                                                </ion-label>
-                                                                <ion-input type="number" [(ngModel)]="item.price"
-                                                                    formControlName="price" placeholder="Price">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                            <span class="text-danger" *ngIf="!updateForm.controls['price'].valid && 
-                                      updateForm.controls['price']?.touched"> Price is Required *</span>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Description
-                                                                </ion-label>
-                                                                <ion-input type="text"
-                                                                    [(ngModel)]="item.productDescription"
-                                                                    formControlName="productDescription"
-                                                                    placeholder="Description">
-                                                                </ion-input>
-                                                            </ion-item>
-                                                            <span class="text-danger" *ngIf="!updateForm.controls['productDescription'].valid && 
-                                      updateForm.controls['productDescription']?.touched"> Description is Required
-                                                                *</span>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row>
-                                                        <ion-col>
-                                                            <ion-item lines="none">
-                                                                <ion-label position="stacked">Status</ion-label>
-                                                                <ion-select placeholder="Status"
-                                                                    (ionChange)="statusForm($event)"
-                                                                    formControlName="isStatus"
-                                                                    [(ngModel)]="item.isStatus">
-                                                                    <ion-select-option value="open">Active
-                                                                    </ion-select-option>
-                                                                    <ion-select-option value="Complete">Complete
-                                                                    </ion-select-option>
-                                                                </ion-select>
-                                                            </ion-item>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                    <ion-row class="paddingOnSide">
-                                                        <ion-col>
-                                                            <ion-button (click)="onClose()" expand="block"
-                                                                color="danger">
-                                                                Cancel
-                                                            </ion-button>
-                                                        </ion-col>
-                                                        <ion-col>
-                                                            <ion-button color="tertiary" expand="block" type="submit">
-                                                                Save
-                                                            </ion-button>
-                                                        </ion-col>
-                                                    </ion-row>
-                                                </form>
-                                            </ion-grid>
-                                        </ion-content>
-                                    </ng-template>
-                                </ion-modal>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label class="ion-text-wrap">
-                                    <p>Tenure &nbsp;&nbsp;{{ item.productTenure }} &nbsp;&nbsp;Months</p>
-                                </ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-icon slot="start" name="people"></ion-icon>
-                                <ion-label class="ion-text-wrap">
-                                    <p> Max &nbsp;&nbsp;{{ item.noOfCustomers }} &nbsp;&nbsp;Members
-                                    </p>
-                                </ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-icon slot="start" name="calendar"></ion-icon>
-                                <ion-label class="ion-text-wrap">
-                                    <p> {{ convert(item.dateOfCreated) }}</p>
-                                </ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-chip color="tertiary" (click)="getAllCustomerDetails(item.productId)">
-                                    <ion-icon name="people" color="primary"></ion-icon>
-                                    <ion-label color="teritary">Customer</ion-label>
-                                </ion-chip>
-                                <ion-chip color="tertiary" slot="end">
-                                    <ion-label color="teritary">Subscriber Count&nbsp;{{ item.slot }} </ion-label>
-                                </ion-chip>
-                            </ion-item>
-                        </ion-card>
+  <ion-grid>
+    <ion-row *ngIf="segment == 'Chit' || 'KulukKal' || 'rd' || 'loan'">
+      <ng-container *ngFor="let item of filterArray; let i = index;">
+        <ion-col
+          size="12"
+          size-sm="6"
+          size-md="6"
+          size-lg="4"
+          *ngIf="segment == item.productType"
+        >
+          <div>
+            <ion-card class="ion-padding">
+              <ion-item>
+                <ion-label class="labelText"> {{item.productName}} </ion-label>
+                <ion-chip color="tertiary" id="trigger-button{{i}}">
+                  <ion-label>Edit</ion-label>
+                </ion-chip>
+                <ion-modal trigger="trigger-button{{i}}">
+                  <ng-template>
+                    <div style="background-color: #001d6e" class="app-header">
+                      <h1 style="color: #fff">Edit Product</h1>
                     </div>
-                </ion-col>
-            </ng-container>
-        </ion-row>
-    </ion-grid>
-    <ion-modal trigger="trigger">
-        <ng-template>
-            <div style="background-color: #001D6E;" class="app-header">
-                <h1 style="color: #fff;">Add Product</h1>
-            </div>
-            <ion-content>
-                <ion-grid class="ion-no-margin scrollbar" id="style-1">
-                    <form (ngSubmit)='addProductDetails()' [formGroup]="productDetailsForm">
-                        <ion-row>
+                    <ion-content id="style-1">
+                      <ion-grid>
+                        <form
+                          [formGroup]="updateForm"
+                          (ngSubmit)="updateProduct(updateForm.value)"
+                        >
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">Product Name</ion-label>
-                                    <ion-input type="text" formControlName="productName" (ionChange)="checkProduct()"
-                                        placeholder="Product Name">
-                                    </ion-input>
-                                </ion-item>
-                                <span class="alert-danger" *ngIf="isShowError == true">
-                                    <b>Already Exist Enter valid Product Name</b>
-                                </span>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['productName'].valid && 
-                          productDetailsForm.controls['productName']?.touched">Product Name is Required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Product Name
+                                </ion-label>
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="item.productName"
+                                  formControlName="productName"
+                                >
+                                </ion-input>
+                              </ion-item>
+                              <span
+                                class="alert-danger"
+                                *ngIf="isShowError == true"
+                              >
+                                <b>Already Exist Enter valid Product Name</b>
+                              </span>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateForm.controls['productName'].valid && 
+                            updateForm.controls['productName']?.touched"
+                              >
+                                Quantity is required *</span
+                              >
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
+                            <ion-col style="visibility: hidden; display: none">
+                              <ion-input
+                                type="number"
+                                [(ngModel)]="item.productId"
+                                formControlName="productId"
+                              >
+                              </ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">Product Type</ion-label>
-                                    <ion-select placeholder="Product Type" formControlName="productType">
-                                        <ion-select-option value="Chit">CHIT</ion-select-option>
-                                        <ion-select-option value="KulukKal">KULUKKAL</ion-select-option>
-                                        <ion-select-option value="loan">LOAN</ion-select-option>
-                                        <ion-select-option value="rd">RD</ion-select-option>
-                                    </ion-select>
-                                </ion-item>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['productType'].valid && 
-            productDetailsForm.controls['productType']?.touched">Produt Type is Required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Product Type
+                                </ion-label>
+                                <ion-input
+                                  formControlName="productType"
+                                  disabled
+                                  [(ngModel)]="item.productType"
+                                >
+                                </ion-input>
+                              </ion-item>
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">Tenure in Months</ion-label>
-                                    <ion-input type="number" formControlName="productTenure"
-                                        placeholder="Product Tenure">
-                                    </ion-input>
-                                </ion-item>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['productTenure'].valid && 
-            productDetailsForm.controls['productTenure']?.touched"> Tenure is Required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >No Of Customers
+                                </ion-label>
+                                <ion-input
+                                  type="number"
+                                  [(ngModel)]="item.noOfCustomers"
+                                  formControlName="noOfCustomers"
+                                  disabled
+                                  placeholder="No Of Customers"
+                                >
+                                </ion-input>
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateForm.controls['noOfCustomers'].valid && 
+                                        updateForm.controls['noOfCustomers']?.touched"
+                              >
+                                Quantity is required *</span
+                              >
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">Price in Rupees</ion-label>
-                                    <ion-input type="number" formControlName="price" placeholder="₹ In Rupees">
-                                    </ion-input>
-                                </ion-item>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['price'].valid && 
-          productDetailsForm.controls['price']?.touched"> Price is Required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Product Tenure
+                                </ion-label>
+                                <ion-input
+                                  type="number"
+                                  [(ngModel)]="item.productTenure"
+                                  formControlName="productTenure"
+                                  placeholder="Product Tenure"
+                                >
+                                </ion-input>
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateForm.controls['productTenure'].valid && 
+                                        updateForm.controls['productTenure']?.touched"
+                              >
+                                Tenure is Required *</span
+                              >
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">No Of Customers</ion-label>
-                                    <ion-input type="number" formControlName="noOfCustomers"
-                                        placeholder="No Of Customers">
-                                    </ion-input>
-                                </ion-item>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['noOfCustomers'].valid && 
-            productDetailsForm.controls['noOfCustomers']?.touched"> No Of Customers is required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Price in Rupees
+                                </ion-label>
+                                <ion-input
+                                  type="number"
+                                  [(ngModel)]="item.price"
+                                  formControlName="price"
+                                  placeholder="Price"
+                                >
+                                </ion-input>
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateForm.controls['price'].valid && 
+                                      updateForm.controls['price']?.touched"
+                              >
+                                Price is Required *</span
+                              >
                             </ion-col>
-                        </ion-row>
-                        <ion-row>
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-item lines="none">
-                                    <ion-label position="stacked">Description</ion-label>
-                                    <ion-input type="text" formControlName="productDescription"
-                                        placeholder="Description">
-                                    </ion-input>
-                                </ion-item>
-                                <span class="text-danger" *ngIf="!productDetailsForm.controls['productDescription'].valid && 
-            productDetailsForm.controls['productDescription']?.touched"> Description is required *</span>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Description
+                                </ion-label>
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="item.productDescription"
+                                  formControlName="productDescription"
+                                  placeholder="Description"
+                                >
+                                </ion-input>
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateForm.controls['productDescription'].valid && 
+                                      updateForm.controls['productDescription']?.touched"
+                              >
+                                Description is Required *</span
+                              >
                             </ion-col>
-                        </ion-row>
-                        <ion-row class="ion-margin-top buttonCenter">
+                          </ion-row>
+                          <ion-row>
                             <ion-col>
-                                <ion-button expand="block" (click)="onClose()" color="danger">
-                                    Cancel</ion-button>
+                              <ion-item lines="none">
+                                <ion-label position="stacked">Status</ion-label>
+                                <ion-select
+                                  placeholder="Status"
+                                  (ionChange)="statusForm($event)"
+                                  formControlName="isStatus"
+                                  [(ngModel)]="item.isStatus"
+                                >
+                                  <ion-select-option value="open"
+                                    >Active
+                                  </ion-select-option>
+                                  <ion-select-option value="Complete"
+                                    >Complete
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row class="paddingOnSide">
+                            <ion-col>
+                              <ion-button
+                                (click)="onClose()"
+                                expand="block"
+                                color="danger"
+                              >
+                                Cancel
+                              </ion-button>
                             </ion-col>
                             <ion-col>
-                                <ion-button color="tertiary" expand="block" type="submit" [disabled]="!thisFormValid()">
-                                    Save </ion-button>
+                              <ion-button
+                                color="tertiary"
+                                expand="block"
+                                type="submit"
+                              >
+                                Save
+                              </ion-button>
                             </ion-col>
-                        </ion-row>
-                    </form>
-                </ion-grid>
-            </ion-content>
-        </ng-template>
-    </ion-modal>
+                          </ion-row>
+                        </form>
+                      </ion-grid>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+              <ion-item>
+                <ion-label class="ion-text-wrap">
+                  <p>
+                    Tenure &nbsp;&nbsp;{{ item.productTenure }}
+                    &nbsp;&nbsp;Months
+                  </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label class="ion-text-wrap">
+                  <p>
+                    Max &nbsp;&nbsp;{{ item.noOfCustomers }} &nbsp;&nbsp;Members
+                  </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-icon slot="start" name="calendar"></ion-icon>
+                <ion-label class="ion-text-wrap">
+                  <p>{{ convert(item.dateOfCreated) }}</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-chip
+                  color="tertiary"
+                  (click)="getAllCustomerDetails(item.productId)"
+                >
+                  <ion-icon name="people" color="primary"></ion-icon>
+                  <ion-label color="teritary">Customer</ion-label>
+                </ion-chip>
+                <ion-chip color="tertiary" slot="end">
+                  <ion-label color="teritary"
+                    >Subscriber Count&nbsp;{{ item.slot }}
+                  </ion-label>
+                </ion-chip>
+              </ion-item>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+  <ion-modal trigger="trigger">
+    <ng-template>
+      <div style="background-color: #001d6e" class="app-header">
+        <h1 style="color: #fff">Add Product</h1>
+      </div>
+      <ion-content>
+        <ion-grid class="ion-no-margin scrollbar" id="style-1">
+          <form
+            (ngSubmit)="addProductDetails()"
+            [formGroup]="productDetailsForm"
+          >
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Product Name</ion-label>
+                  <ion-input
+                    type="text"
+                    formControlName="productName"
+                    (ionChange)="checkProduct()"
+                    placeholder="Product Name"
+                  >
+                  </ion-input>
+                </ion-item>
+                <span class="alert-danger" *ngIf="isShowError == true">
+                  <b>Already Exist Enter valid Product Name</b>
+                </span>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['productName'].valid && 
+                          productDetailsForm.controls['productName']?.touched"
+                  >Product Name is Required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Product Type</ion-label>
+                  <ion-select
+                    placeholder="Product Type"
+                    formControlName="productType"
+                  >
+                    <ion-select-option value="Chit">CHIT</ion-select-option>
+                    <ion-select-option value="KulukKal"
+                      >KULUKKAL</ion-select-option
+                    >
+                    <ion-select-option value="loan">LOAN</ion-select-option>
+                    <ion-select-option value="rd">RD</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['productType'].valid && 
+            productDetailsForm.controls['productType']?.touched"
+                  >Produt Type is Required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Tenure in Months</ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="productTenure"
+                    placeholder="Product Tenure"
+                  >
+                  </ion-input>
+                </ion-item>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['productTenure'].valid && 
+            productDetailsForm.controls['productTenure']?.touched"
+                >
+                  Tenure is Required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Price in Rupees</ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="price"
+                    placeholder="₹ In Rupees"
+                  >
+                  </ion-input>
+                </ion-item>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['price'].valid && 
+          productDetailsForm.controls['price']?.touched"
+                >
+                  Price is Required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">No Of Customers</ion-label>
+                  <ion-input
+                    type="number"
+                    formControlName="noOfCustomers"
+                    placeholder="No Of Customers"
+                  >
+                  </ion-input>
+                </ion-item>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['noOfCustomers'].valid && 
+            productDetailsForm.controls['noOfCustomers']?.touched"
+                >
+                  No Of Customers is required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Description</ion-label>
+                  <ion-input
+                    type="text"
+                    formControlName="productDescription"
+                    placeholder="Description"
+                  >
+                  </ion-input>
+                </ion-item>
+                <span
+                  class="text-danger"
+                  *ngIf="!productDetailsForm.controls['productDescription'].valid && 
+            productDetailsForm.controls['productDescription']?.touched"
+                >
+                  Description is required *</span
+                >
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top buttonCenter">
+              <ion-col>
+                <ion-button expand="block" (click)="onClose()" color="danger">
+                  Cancel</ion-button
+                >
+              </ion-col>
+              <ion-col>
+                <ion-button
+                  color="tertiary"
+                  expand="block"
+                  type="submit"
+                  [disabled]="!thisFormValid()"
+                >
+                  Save
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-grid>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

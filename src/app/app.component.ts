@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { environment } from '../environments/environment';
 import { AppUpdatorService } from './services/app-updator.service';
+import { ApiService } from './services/api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,13 +14,18 @@ import { AppUpdatorService } from './services/app-updator.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  UserId = localStorage.getItem('userId');
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private appUpdatorService: AppUpdatorService
+    private appUpdatorService: AppUpdatorService,
+    private apiService: ApiService
   ) {
     this.initializeApp();
+    this.CheckUser();
+
   }
 
   ngOnInit() {
@@ -33,5 +40,16 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
     });
   }
+  CheckUser()
+  {
+    this.apiService.CheckUser(this.UserId).subscribe(data =>{
+      
+   if(data==false)
+   {
+    this.apiService.logout();
+   }
+    });
 
+  }
+ 
 }

@@ -44,4 +44,6 @@ import { Tab1Page } from './layout/tab1/tab1.page';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

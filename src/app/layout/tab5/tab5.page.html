@@ -85,7 +85,7 @@
                                 </ion-input>
                             </ion-item>
                             <span class="text-danger" *ngIf="!updateUserForm.controls['password'].valid && 
-                            updateUserForm.controls['password']?.touched"> UserName is
+                            updateUserForm.controls['password']?.touched"> Password is
                                     required *</span>
                         </ion-col>
                     </ion-row>
@@ -106,7 +106,7 @@
                                 </ion-input>
                             </ion-item>
                             <span class="text-danger" *ngIf="!updateUserForm.controls['mail'].valid && 
-                            updateUserForm.controls['mail']?.touched"> UserName is
+                            updateUserForm.controls['mail']?.touched"> Mail Id is
                                     required *</span>
                         </ion-col>
                     </ion-row>
@@ -118,6 +118,9 @@
                                 minlength="10" maxlength="10" (keydown)="validateNumber($event)">
                                 </ion-input>
                             </ion-item>
+                            <span class="text-danger" *ngIf="!updateUserForm.controls['mobileNumber'].valid && 
+                            updateUserForm.controls['mobileNumber']?.touched"> Mobile Number is
+                                    required *</span>
                            
                         </ion-col>
                     </ion-row>
@@ -129,7 +132,7 @@
                                 </ion-textarea>
                             </ion-item>
                             <span class="text-danger" *ngIf="!updateUserForm.controls['address'].valid && 
-                            updateUserForm.controls['address']?.touched"> UserName is
+                            updateUserForm.controls['address']?.touched"> Address is
                                     required *</span>
                         </ion-col>
                     </ion-row>
