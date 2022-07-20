@@ -58,10 +58,6 @@ export class ApiService {
         const url = this.loginApiUrl('AddUser');
         return this.http.post(url, params);
     }
-    getAllUserDetails() {
-        const url = this.loginApiUrl('GetAllUsers')
-        return this.http.get(url);
-    }
     updateUser = (params: any): Observable<any> => {
         const url = this.loginApiUrl('UpdateUser');
         return this.http.put(url, params);
@@ -128,7 +124,10 @@ export class ApiService {
         const url = this.FileApiUrl('Upload');
         return this.http.post(url, params);
     }
-
+    getFileDownload=(id: any): Observable<any> => {
+        const url = this.FileApiUrl('DownloadFile?id=');
+        return this.http.get(url + id,{ responseType: 'blob' });
+    }
     insertProductCustomer = (params: any): Observable<any> => {
         const url = this.getProductCustomerApiUrl('AddProductCustomerdetails');
         return this.http.post(url, params);

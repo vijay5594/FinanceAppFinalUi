@@ -93,9 +93,10 @@ export class Tab3Page implements OnInit {
         }
     }
     getFileDownload(id: any) {
-        return this.http.get('https://localhost:5001/api/Fileupload/DownloadFile?id=' + id, { responseType: 'blob' }).subscribe((event) => {
+        this.apiService.getFileDownload(id).subscribe(event=>{
             FileSaver.saveAs(event);
         });
+            
     }
     async presentAlertConfirm(data: any, custName: any) {
         let payload = {
