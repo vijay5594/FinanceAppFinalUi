@@ -20,6 +20,7 @@ export class Tab5Page implements OnInit {
     currentUser: string = localStorage.getItem('userName');
     UserId: string = localStorage.getItem('userId');
     isShown: boolean = true;
+    
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -71,7 +72,9 @@ export class Tab5Page implements OnInit {
     GetAllUsers() {
 
         this.apiService.GetUser(this.UserId).subscribe(data => {
-            this.userDetails = data;
+         
+             this.userDetails = data;
+          
             if (this.userDetails.role == 'operator') {
                 this.userDetails = Array.of(this.userDetails);
                 this.isShown = false;

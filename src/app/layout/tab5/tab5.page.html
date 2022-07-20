@@ -7,7 +7,7 @@
   <h2>User Details</h2>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of userDetails ; let i = index;" size="12" size-sm="6" size-md="6" size-lg="4">
+      <ion-col *ngFor="let item of userDetails ; let i = index;" size="12" size-sm="6" size-md="6" size-lg="3">
         <ion-card class="ion-padding">
           <ion-row>
             <ion-col>
@@ -30,6 +30,30 @@
               <ion-item lines="none">
                 <ion-icon name="desktop" slot="start"></ion-icon>
                 <ion-label class="ion-text-wrap"> {{item.role}} </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="!isShown">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="mail" slot="start"></ion-icon>
+                <ion-label class="ion-text-wrap"> {{item.mail}} </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="!isShown">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="call" slot="start"></ion-icon>
+                <ion-label class="ion-text-wrap"> {{item.mobileNumber}} </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="!isShown">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="home" slot="start"></ion-icon>
+                <ion-label class="ion-text-wrap"> {{item.address}} </ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
