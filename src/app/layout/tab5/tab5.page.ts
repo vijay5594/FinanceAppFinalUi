@@ -19,6 +19,7 @@ export class Tab5Page implements OnInit {
     updateUserForm: FormGroup;
     currentUser: string = localStorage.getItem('userName');
     UserId: string = localStorage.getItem('userId');
+    isShown: boolean = true ;
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -35,6 +36,7 @@ export class Tab5Page implements OnInit {
     }
 
     ngOnInit() {
+       
     }
     generateLoginForm = () => {
         this.loginForm = this.fb.group({
@@ -72,6 +74,7 @@ export class Tab5Page implements OnInit {
             this.userDetails = data;
             if (this.userDetails.role == 'operator') {
                 this.userDetails = Array.of(this.userDetails);
+                this.isShown=false;
             }
         });
     }
@@ -79,6 +82,7 @@ export class Tab5Page implements OnInit {
         this.modal.dismiss();
         this.loginForm.reset();
     }
+   
     thisFormValid() {
         if (this.loginForm.valid) {
             return true
@@ -154,4 +158,5 @@ export class Tab5Page implements OnInit {
         });
         await alert.present();
     }
+  
 }

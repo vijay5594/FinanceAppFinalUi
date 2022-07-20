@@ -1,4 +1,4 @@
-<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+<ion-fab *ngIf="isShown"  horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button id="add">
         <ion-icon size="large" name="add"></ion-icon>
     </ion-fab-button>
@@ -37,7 +37,7 @@
             </ion-col>
             </ion-row>
        
-                    <ion-row>
+                    <ion-row *ngIf="isShown">
                         <ion-col>
                     <ion-item lines="none" >
                         <ion-button color="danger" slot="start" (click)="deleteUser(item.userId,item.userName)">
@@ -50,7 +50,7 @@
                         <ion-button color="primary" slot="end" id="update{{i}}">
                         <ion-icon name="create" ></ion-icon>
                         </ion-button>
-
+                  
 <ion-modal trigger="update{{i}}">
     <ng-template>
         <div style="background-color: #001D6E;" class="app-header">
