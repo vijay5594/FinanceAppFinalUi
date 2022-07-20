@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import * as moment from 'moment';
-import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,17 +13,17 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-    currentUser: string = localStorage.getItem('userName');
-    productId: any = localStorage.getItem('productId');
-    productDetailsForm: FormGroup;
-    isShowError: boolean = false;
-    ischecproductName: boolean = true;
-    productDetails: any;
-    segment: any;
-    updateForm: FormGroup;
     filterArray: any;
     IsStatus: any;
+    productDetails: any;
+    segment: any;
+    isShowError: boolean = false;
+    ischecproductName: boolean = true;
     isUsername: boolean = true;
+    productDetailsForm: FormGroup;
+    updateForm: FormGroup;
+    currentUser: string = localStorage.getItem('userName');
+    productId: any = localStorage.getItem('productId');
 
     constructor(
         private apiService: ApiService,
@@ -35,20 +34,17 @@ export class Tab1Page implements OnInit {
         public notificationService: NotificationService,
         private fb: FormBuilder) {
         this.generateProductForm();
-        this.getDetails();
         this.updateProductForm();
-
+        this.getDetails();
     }
     ngOnInit(): void {
         this.segment = 'Chit';
-
     }
     ionViewWillEnter() {
         this.generateProductForm();
         this.updateProductForm();
         this.getDetails();
     }
-   
     generateProductForm = () => {
         this.productDetailsForm = this.fb.group({
             productName: ['', Validators.required],
@@ -75,7 +71,6 @@ export class Tab1Page implements OnInit {
 
         });
     }
-   
     addProductDetails() {
         this.apiService.insertProduct(this.productDetailsForm.value).subscribe((data: any) => {
             this.productDetailsForm.reset();
@@ -111,8 +106,6 @@ export class Tab1Page implements OnInit {
             });
         }
     }
-    
-
     SearchFunction(event) {
         let val = event.target.value;
         this.filterArray = this.productDetails;
@@ -137,7 +130,6 @@ export class Tab1Page implements OnInit {
             return false
         }
     }
-
     getAllCustomerDetails(data: any) {
         this.userService.Product = data
         this.apiService.CustomerForProductDetails(data).subscribe(data => {

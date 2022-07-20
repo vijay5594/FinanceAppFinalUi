@@ -1,271 +1,403 @@
-<ion-fab *ngIf="isShown"  horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button id="add">
-        <ion-icon size="large" name="add"></ion-icon>
-    </ion-fab-button>
+<ion-fab *ngIf="isShown" horizontal="end" vertical="bottom" slot="fixed">
+  <ion-fab-button id="add">
+    <ion-icon size="large" name="add"></ion-icon>
+  </ion-fab-button>
 </ion-fab>
 <ion-content>
-    <h2>User Details</h2>
-    <ion-grid>
-        <ion-row>
-            <ion-col *ngFor="let item of userDetails ; let i = index;" size="12" size-sm="6" size-md="6" size-lg="4">
+  <h2>User Details</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        *ngFor="let item of userDetails ; let i = index;"
+        size="12"
+        size-sm="6"
+        size-md="6"
+        size-lg="4"
+      >
         <ion-card class="ion-padding">
           <ion-row>
             <ion-col>
-            <ion-item lines="none">
+              <ion-item lines="none">
                 <ion-icon name="person" slot="start"></ion-icon>
-                        <ion-label class="ion-text-wrap">{{item.userName}}</ion-label>
-                    </ion-item>
+                <ion-label class="ion-text-wrap">{{item.userName}}</ion-label>
+              </ion-item>
             </ion-col>
-           
           </ion-row>
-          
-         <ion-row>
+
+          <ion-row>
             <ion-col>
-                    <ion-item lines="none">
-                        <ion-icon name="lock-closed-sharp" slot="start"></ion-icon>
-                        <ion-label class="ion-text-wrap"> {{item.password}} </ion-label>
-                    </ion-item>
+              <ion-item lines="none">
+                <ion-icon name="lock-closed-sharp" slot="start"></ion-icon>
+                <ion-label class="ion-text-wrap"> {{item.password}} </ion-label>
+              </ion-item>
             </ion-col>
-           
-         </ion-row>
-            <ion-row>
+          </ion-row>
+          <ion-row>
             <ion-col>
-                    <ion-item lines="none">
-                        <ion-icon name="desktop" slot="start"></ion-icon>
-                        <ion-label class="ion-text-wrap"> {{item.role}} </ion-label>
-                    </ion-item>
+              <ion-item lines="none">
+                <ion-icon name="desktop" slot="start"></ion-icon>
+                <ion-label class="ion-text-wrap"> {{item.role}} </ion-label>
+              </ion-item>
             </ion-col>
-            </ion-row>
-       
-                    <ion-row *ngIf="isShown">
-                        <ion-col>
-                    <ion-item lines="none" >
-                        <ion-button color="danger" slot="start" (click)="deleteUser(item.userId,item.userName)">
-                        <ion-icon name="trash"   ></ion-icon>
-                    </ion-button>
-                    </ion-item>
-                        </ion-col>
-                        <ion-col>
-                    <ion-item lines="none" >
-                        <ion-button color="primary" slot="end" id="update{{i}}">
-                        <ion-icon name="create" ></ion-icon>
-                        </ion-button>
-                  
-<ion-modal trigger="update{{i}}">
-    <ng-template>
-        <div style="background-color: #001D6E;" class="app-header">
-            <h1 style="color: #fff;">Edit User</h1>
-        </div>
-        <ion-content>
-            <ion-grid class="ion-no-margin scrollbar" id="style-1">
-                <form  [formGroup]="updateUserForm">
-                    <ion-row class="hiddenText">
-                        <ion-col>
-                            <ion-input type="text" disabled [(ngModel)]="item.userId"
-                                formControlName="userId" placeholder=""></ion-input>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">UserName</ion-label>
-                                <ion-input type="text" placeholder="Enter UserName" [(ngModel)]="item.userName" formControlName="userName">
+          </ion-row>
+
+          <ion-row *ngIf="isShown">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-button
+                  color="danger"
+                  slot="start"
+                  (click)="deleteUser(item.userId,item.userName)"
+                >
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-button color="primary" slot="end" id="update{{i}}">
+                  <ion-icon name="create"></ion-icon>
+                </ion-button>
+
+                <ion-modal trigger="update{{i}}">
+                  <ng-template>
+                    <div style="background-color: #001d6e" class="app-header">
+                      <h1 style="color: #fff">Edit User</h1>
+                    </div>
+                    <ion-content>
+                      <ion-grid class="ion-no-margin scrollbar" id="style-1">
+                        <form [formGroup]="updateUserForm">
+                          <ion-row class="hiddenText">
+                            <ion-col>
+                              <ion-input
+                                type="text"
+                                disabled
+                                [(ngModel)]="item.userId"
+                                formControlName="userId"
+                                placeholder=""
+                              ></ion-input>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >UserName</ion-label
+                                >
+                                <ion-input
+                                  type="text"
+                                  placeholder="Enter UserName"
+                                  [(ngModel)]="item.userName"
+                                  formControlName="userName"
+                                >
                                 </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!updateUserForm.controls['userName'].valid && 
-                            updateUserForm.controls['userName']?.touched"> UserName is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Password</ion-label>
-                                <ion-input type="text" placeholder="Enter Password" [(ngModel)]="item.password" formControlName="password">
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateUserForm.controls['userName'].valid && 
+                            updateUserForm.controls['userName']?.touched"
+                              >
+                                UserName is required *</span
+                              >
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Password</ion-label
+                                >
+                                <ion-input
+                                  type="text"
+                                  placeholder="Enter Password"
+                                  [(ngModel)]="item.password"
+                                  formControlName="password"
+                                >
                                 </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!updateUserForm.controls['password'].valid && 
-                            updateUserForm.controls['password']?.touched"> Password is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateUserForm.controls['password'].valid && 
+                            updateUserForm.controls['password']?.touched"
+                              >
+                                Password is required *</span
+                              >
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
                                 <ion-label position="stacked">Role</ion-label>
-                                <ion-input type="text"  [(ngModel)]="item.role" formControlName="role" disabled>
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="item.role"
+                                  formControlName="role"
+                                  disabled
+                                >
                                 </ion-input>
-                            </ion-item>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Mail Id</ion-label>
-                                <ion-input type="text" placeholder="Enter Mail Id" formControlName="mail" [(ngModel)]="item.mail">
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Mail Id</ion-label
+                                >
+                                <ion-input
+                                  type="text"
+                                  placeholder="Enter Mail Id"
+                                  formControlName="mail"
+                                  [(ngModel)]="item.mail"
+                                >
                                 </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!updateUserForm.controls['mail'].valid && 
-                            updateUserForm.controls['mail']?.touched"> Mail Id is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Mobile Number</ion-label>
-                                <ion-input type="tel" placeholder="Enter Mobile Number" formControlName="mobileNumber" [(ngModel)]="item.mobileNumber"
-                                minlength="10" maxlength="10" (keydown)="validateNumber($event)">
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateUserForm.controls['mail'].valid && 
+                            updateUserForm.controls['mail']?.touched"
+                              >
+                                Mail Id is required *</span
+                              >
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Mobile Number</ion-label
+                                >
+                                <ion-input
+                                  type="tel"
+                                  placeholder="Enter Mobile Number"
+                                  formControlName="mobileNumber"
+                                  [(ngModel)]="item.mobileNumber"
+                                  minlength="10"
+                                  maxlength="10"
+                                  (keydown)="validateNumber($event)"
+                                >
                                 </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!updateUserForm.controls['mobileNumber'].valid && 
-                            updateUserForm.controls['mobileNumber']?.touched"> Mobile Number is
-                                    required *</span>
-                           
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Address</ion-label>
-                                <ion-textarea type="text" placeholder="Enter Address" formControlName="address" [(ngModel)]="item.address">
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateUserForm.controls['mobileNumber'].valid && 
+                            updateUserForm.controls['mobileNumber']?.touched"
+                              >
+                                Mobile Number is required *</span
+                              >
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item lines="none">
+                                <ion-label position="stacked"
+                                  >Address</ion-label
+                                >
+                                <ion-textarea
+                                  type="text"
+                                  placeholder="Enter Address"
+                                  formControlName="address"
+                                  [(ngModel)]="item.address"
+                                >
                                 </ion-textarea>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!updateUserForm.controls['address'].valid && 
-                            updateUserForm.controls['address']?.touched"> Address is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row class="ion-margin-top buttonCenter">
-                        <ion-col>
-                            <ion-button expand="block" color="danger" (click)="onClose()">
-                                Cancel</ion-button>
-                        </ion-col>
-                        <ion-col>
-                            <ion-button color="tertiary" expand="block" type="submit"  (click)="updateUser(updateUserForm.value)">
-                                Save </ion-button>
-                        </ion-col>
-                    </ion-row>
-                </form>
-            </ion-grid>
-        </ion-content>
-    </ng-template>
-</ion-modal>
-
-
-                    </ion-item>
-                        </ion-col>
-                    </ion-row>
-          
+                              </ion-item>
+                              <span
+                                class="text-danger"
+                                *ngIf="!updateUserForm.controls['address'].valid && 
+                            updateUserForm.controls['address']?.touched"
+                              >
+                                Address is required *</span
+                              >
+                            </ion-col>
+                          </ion-row>
+                          <ion-row class="ion-margin-top buttonCenter">
+                            <ion-col>
+                              <ion-button
+                                expand="block"
+                                color="danger"
+                                (click)="onClose()"
+                              >
+                                Cancel</ion-button
+                              >
+                            </ion-col>
+                            <ion-col>
+                              <ion-button
+                                color="tertiary"
+                                expand="block"
+                                type="submit"
+                                (click)="updateUser(updateUserForm.value)"
+                              >
+                                Save
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </form>
+                      </ion-grid>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+            </ion-col>
+          </ion-row>
         </ion-card>
-    </ion-col>
-    
-        </ion-row>
-        
-    </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
-
 <ion-modal trigger="add">
-    <ng-template>
-        <div style="background-color: #001D6E;" class="app-header">
-            <h1 style="color: #fff;">Add New User</h1>
-        </div>
-        <ion-content>
-            <ion-grid class="ion-no-margin scrollbar" id="style-1">
-                <form (ngSubmit)='addNewUser()' [formGroup]="loginForm">
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">UserName</ion-label>
-                                <ion-input type="text" placeholder="Enter UserName" formControlName="userName" (ionChange)="checkUser()">
-                                </ion-input>
-                            </ion-item>
-                            <span class="alert-danger" *ngIf="isShowError == true">
-                                <b>Already Exist Enter valid UserName</b>
-                            </span>
-                            <span class="text-danger" *ngIf="!loginForm.controls['userName'].valid && 
-                            loginForm.controls['userName']?.touched"> UserName is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Password</ion-label>
-                                <ion-input type="text" placeholder="Enter Password" formControlName="password">
-                                </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['password'].valid && 
-                            loginForm.controls['[password']?.touched"> Password is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Role</ion-label>
-                                <ion-select placeholder="Select Role" formControlName="role">
-                                    <ion-select-option value="Admin">Admin</ion-select-option>
-                                    <ion-select-option value="operator">Operator</ion-select-option>
-
-                                </ion-select>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['role'].valid && 
-                            loginForm.controls['role']?.touched"> Role is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Mail Id</ion-label>
-                                <ion-input type="text" placeholder="Enter Mail Id" formControlName="mail">
-                                </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['mail'].valid && 
-                            loginForm.controls['mail']?.touched">Mail id is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Mobile Number</ion-label>
-                                <ion-input type="tel" placeholder="Enter Mobile Number" formControlName="mobileNumber"
-                                minlength="10" maxlength="10" (keydown)="validateNumber($event)">
-                                </ion-input>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['mobileNumber'].valid && 
-                            loginForm.controls['mobileNumber']?.touched"> Mobile Number is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <ion-item lines="none">
-                                <ion-label position="stacked">Address</ion-label>
-                                <ion-textarea type="text" placeholder="Enter Address" formControlName="address">
-                                </ion-textarea>
-                            </ion-item>
-                            <span class="text-danger" *ngIf="!loginForm.controls['address'].valid && 
-                            loginForm.controls['address']?.touched"> Quantity is
-                                    required *</span>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row class="ion-margin-top buttonCenter">
-                        <ion-col>
-                            <ion-button expand="block" color="danger" (click)="onClose()">
-                                Cancel</ion-button>
-                        </ion-col>
-                        <ion-col>
-                            <ion-button color="tertiary" expand="block" type="submit" [disabled]="!thisFormValid()">
-                                Save </ion-button>
-                        </ion-col>
-                    </ion-row>
-                </form>
-            </ion-grid>
-        </ion-content>
-    </ng-template>
+  <ng-template>
+    <div style="background-color: #001d6e" class="app-header">
+      <h1 style="color: #fff">Add New User</h1>
+    </div>
+    <ion-content>
+      <ion-grid class="ion-no-margin scrollbar" id="style-1">
+        <form (ngSubmit)="addNewUser()" [formGroup]="loginForm">
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">UserName</ion-label>
+                <ion-input
+                  type="text"
+                  placeholder="Enter UserName"
+                  formControlName="userName"
+                  (ionChange)="checkUser()"
+                >
+                </ion-input>
+              </ion-item>
+              <span class="alert-danger" *ngIf="isShowError == true">
+                <b>Already Exist Enter valid UserName</b>
+              </span>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['userName'].valid && 
+                            loginForm.controls['userName']?.touched"
+              >
+                UserName is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input
+                  type="text"
+                  placeholder="Enter Password"
+                  formControlName="password"
+                >
+                </ion-input>
+              </ion-item>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['password'].valid && 
+                            loginForm.controls['[password']?.touched"
+              >
+                Password is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">Role</ion-label>
+                <ion-select placeholder="Select Role" formControlName="role">
+                  <ion-select-option value="Admin">Admin</ion-select-option>
+                  <ion-select-option value="operator"
+                    >Operator</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['role'].valid && 
+                            loginForm.controls['role']?.touched"
+              >
+                Role is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">Mail Id</ion-label>
+                <ion-input
+                  type="text"
+                  placeholder="Enter Mail Id"
+                  formControlName="mail"
+                >
+                </ion-input>
+              </ion-item>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['mail'].valid && 
+                            loginForm.controls['mail']?.touched"
+                >Mail id is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">Mobile Number</ion-label>
+                <ion-input
+                  type="tel"
+                  placeholder="Enter Mobile Number"
+                  formControlName="mobileNumber"
+                  minlength="10"
+                  maxlength="10"
+                  (keydown)="validateNumber($event)"
+                >
+                </ion-input>
+              </ion-item>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['mobileNumber'].valid && 
+                            loginForm.controls['mobileNumber']?.touched"
+              >
+                Mobile Number is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-label position="stacked">Address</ion-label>
+                <ion-textarea
+                  type="text"
+                  placeholder="Enter Address"
+                  formControlName="address"
+                >
+                </ion-textarea>
+              </ion-item>
+              <span
+                class="text-danger"
+                *ngIf="!loginForm.controls['address'].valid && 
+                            loginForm.controls['address']?.touched"
+              >
+                Quantity is required *</span
+              >
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-margin-top buttonCenter">
+            <ion-col>
+              <ion-button expand="block" color="danger" (click)="onClose()">
+                Cancel</ion-button
+              >
+            </ion-col>
+            <ion-col>
+              <ion-button
+                color="tertiary"
+                expand="block"
+                type="submit"
+                [disabled]="!thisFormValid()"
+              >
+                Save
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-content>
+  </ng-template>
 </ion-modal>
-

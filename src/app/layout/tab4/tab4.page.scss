@@ -1,49 +1,49 @@
 ion-card {
-    border-radius: 18px;
-    box-shadow: #64646f33 0 7px 29px;
+  border-radius: 18px;
+  box-shadow: #64646f33 0 7px 29px;
 }
 
 ion-content {
-    --background: #f9f9fc;
+  --background: #f9f9fc;
 }
 
 p {
-    color: #001d6e;
+  color: #001d6e;
 }
 
 h1 {
-    color: #ffffff;
-    font-weight: 800;
+  color: #ffffff;
+  font-weight: 800;
 }
 
 h2 {
-    text-align: center;
-    font-weight: 900;
-    color: #001d6e;
+  text-align: center;
+  font-weight: 900;
+  color: #001d6e;
 }
 
 ion-input,
 ion-textarea,
 ion-select {
-    border-radius: 10px;
-    margin-top: 1rem;
-    border: 0.5px solid #c7d1ef;
-    --padding-start: 15px !important;
-    background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border: 0.5px solid #c7d1ef;
+  --padding-start: 15px !important;
+  background-color: #ffffff;
 }
 
 ion-item {
-    --inner-border-width: 0;
-    padding-right: 10px;
-    margin: 0 0 0 0;
+  --inner-border-width: 0;
+  padding-right: 10px;
+  margin: 0 0 0 0;
 }
 
 ion-label {
-    font-weight: 800;
-    margin: 0 0 0 0;
-    color: #001d6e !important;
+  font-weight: 800;
+  margin: 0 0 0 0;
+  color: #001d6e !important;
 }
 
 .isDataNot {
-    text-align: center !important;
+  text-align: center !important;
 }

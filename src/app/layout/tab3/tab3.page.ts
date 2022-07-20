@@ -6,9 +6,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AlertController, IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, MaxValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
-import { IfStmt } from '@angular/compiler';
 
 @Component({
     selector: 'app-tab3',
@@ -41,7 +40,6 @@ export class Tab3Page implements OnInit {
         private router: Router,
         public notificationService: NotificationService,
         private modal: ModalController,
-
         private http: HttpClient,
         private fb: FormBuilder,
         private toast: NotificationService,

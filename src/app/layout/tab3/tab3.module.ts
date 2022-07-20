@@ -7,19 +7,18 @@ import { ChartsModule } from 'ng2-charts';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
-
 const avatarColors = ['#16438b'];
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    Tab3PageRoutingModule,
-    ReactiveFormsModule,
-    ChartsModule
-  ],
-  declarations: [
-    Tab3Page]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        Tab3PageRoutingModule,
+        ReactiveFormsModule,
+        ChartsModule
+    ],
+    declarations: [
+        Tab3Page]
 })
 export class Tab3PageModule { }

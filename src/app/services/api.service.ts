@@ -25,6 +25,7 @@ export class ApiService {
         localStorage.removeItem('productId');
         localStorage.removeItem('customerId');
         localStorage.removeItem('productCustomerId');
+        localStorage.removeItem('userId');
     }
     loginApiUrl = (endpoint: string) => {
         return `${environment.baseURL}/${this.LoginApi}/${endpoint}`;
