@@ -34,7 +34,9 @@ export class Tab3Page implements OnInit {
     filterToPush: any;
     arrayData = []
     searchvalue: boolean = false;
-
+    role: string = localStorage.getItem('Role');
+    isShown:boolean=true;
+    
     constructor(
         private apiService: ApiService,
         private router: Router,
@@ -59,6 +61,7 @@ export class Tab3Page implements OnInit {
         this.generateCustomerForm();
         this.generateDetails();
         this.getCustomerDetail();
+        this.show();
     }
     ionViewWillLeave() {
     }
@@ -97,6 +100,12 @@ export class Tab3Page implements OnInit {
             FileSaver.saveAs(event);
         });
             
+    }
+    show(){
+        if (this.role == 'operator') {
+               
+            this.isShown = false;
+        }
     }
     async presentAlertConfirm(data: any, custName: any) {
         let payload = {

@@ -2,7 +2,7 @@
 </ion-searchbar>
 <h5 *ngIf="filterToPush == false" class="isDataNot">No Data Found</h5>
 <ion-content>
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed" class="ion-margin-top">
+  <ion-fab *ngIf="isShown" horizontal="end" vertical="bottom" slot="fixed" class="ion-margin-top">
     <ion-fab-button id="triggerbutton_one">
       <ion-icon size="large" name="add"></ion-icon>
     </ion-fab-button>
@@ -13,7 +13,7 @@
         <ion-card class="ion-padding ion-margin-top">
           <ion-item>
             <ion-label class="labelText"> {{item.customerName}} </ion-label>
-            <ion-chip color="tertiary" id="edit-customer{{i}}">
+            <ion-chip *ngIf="isShown" color="tertiary" id="edit-customer{{i}}">
               <ion-label>Edit</ion-label>
             </ion-chip>
             <ion-modal trigger="edit-customer{{i}}">

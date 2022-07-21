@@ -1,4 +1,4 @@
-<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+<ion-fab *ngIf="isShown" horizontal="end" vertical="bottom" slot="fixed">
   <ion-fab-button id="trigger">
     <ion-icon size="large" name="add"></ion-icon>
   </ion-fab-button>
@@ -10,8 +10,8 @@
   <ion-segment-button value="KulukKal">
     <ion-label> KULUKKAL </ion-label>
   </ion-segment-button>
-  <ion-segment-button value="rd">
-    <ion-label> RD </ion-label>
+  <ion-segment-button value="mfi">
+    <ion-label> MFI </ion-label>
   </ion-segment-button>
   <ion-segment-button value="loan">
     <ion-label> LOAN </ion-label>
@@ -20,14 +20,14 @@
 <ion-searchbar class="ion-margin-top" (ionChange)="SearchFunction($event)"></ion-searchbar>
 <ion-content>
   <ion-grid>
-    <ion-row *ngIf="segment == 'Chit' || 'KulukKal' || 'rd' || 'loan'">
+    <ion-row *ngIf="segment == 'Chit' || 'KulukKal' || 'mfi' || 'loan'">
       <ng-container *ngFor="let item of filterArray; let i = index;">
         <ion-col size="12" size-sm="6" size-md="6" size-lg="4" *ngIf="segment == item.productType">
           <div>
             <ion-card class="ion-padding">
               <ion-item>
                 <ion-label class="labelText"> {{item.productName}} </ion-label>
-                <ion-chip color="tertiary" id="trigger-button{{i}}">
+                <ion-chip *ngIf="isShown" color="tertiary" id="trigger-button{{i}}">
                   <ion-label>Edit</ion-label>
                 </ion-chip>
                 <ion-modal trigger="trigger-button{{i}}">
@@ -224,8 +224,9 @@
                   <ion-select placeholder="Product Type" formControlName="productType">
                     <ion-select-option value="Chit">CHIT</ion-select-option>
                     <ion-select-option value="KulukKal">KULUKKAL</ion-select-option>
+                    <ion-select-option value="mfi">MFI</ion-select-option>
                     <ion-select-option value="loan">LOAN</ion-select-option>
-                    <ion-select-option value="rd">RD</ion-select-option>
+                   
                   </ion-select>
                 </ion-item>
                 <span class="text-danger" *ngIf="!productDetailsForm.controls['productType'].valid && 

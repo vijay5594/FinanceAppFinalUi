@@ -13,6 +13,7 @@ import { ApiService } from './services/api.service';
     styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+
     UserId = localStorage.getItem('userId');
 
     constructor(
@@ -26,13 +27,11 @@ export class AppComponent implements OnInit {
         this.CheckUser();
 
     }
-
     ngOnInit() {
         if (environment.production) {
             this.appUpdatorService.checkPWAUpdate();
         }
     }
-
     initializeApp = () => {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
@@ -46,7 +45,6 @@ export class AppComponent implements OnInit {
                 this.apiService.logout();
             }
         });
-
     }
 
 }

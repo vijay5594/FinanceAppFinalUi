@@ -24,7 +24,9 @@ export class Tab1Page implements OnInit {
     updateForm: FormGroup;
     currentUser: string = localStorage.getItem('userName');
     productId: any = localStorage.getItem('productId');
-
+    isShown: boolean = true;
+   
+    role: string = localStorage.getItem('Role');
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -39,11 +41,15 @@ export class Tab1Page implements OnInit {
     }
     ngOnInit(): void {
         this.segment = 'Chit';
+
     }
     ionViewWillEnter() {
         this.generateProductForm();
         this.updateProductForm();
         this.getDetails();
+        this.show();
+       
+
     }
     generateProductForm = () => {
         this.productDetailsForm = this.fb.group({
@@ -83,9 +89,17 @@ export class Tab1Page implements OnInit {
     }
     getDetails() {
         this.apiService.getProductDetails().subscribe((data: any) => {
+            console.log(data,"dsdgds")
             this.productDetails = data;
             this.filterArray = data;
+            
         });
+    }
+    show(){
+        if (this.role == 'operator') {
+               
+            this.isShown = false;
+        }
     }
     segmentChanged(ev: any) {
         this.segment = ev.detail.value;
@@ -155,4 +169,5 @@ export class Tab1Page implements OnInit {
             IsStatus: this.IsStatus
         }
     }
+   
 }
