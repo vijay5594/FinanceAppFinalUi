@@ -41,6 +41,7 @@ export class Tab2Page implements OnInit {
     ionViewWillEnter() {
         this.getCustomerDetails();
         this.generatePaymentForm();
+       
     }
     ionViewWillLeave() {
         this._data = null;
@@ -76,7 +77,9 @@ export class Tab2Page implements OnInit {
     }
     payFormValue() {
         this.apiService.paymentDetails(this.paymentForm.value).subscribe(data => {
+            
             this.notificationService.success('Paid successfully')
+          
             this.router.navigate(['tabs/tab1']);
         },
             (error: Response) => {
@@ -90,6 +93,7 @@ export class Tab2Page implements OnInit {
     }
     onClose() {
         this.modal.dismiss();
+        
     }
     thisFormValid() {
         if (this.paymentForm.valid) {

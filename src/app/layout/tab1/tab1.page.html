@@ -7,8 +7,8 @@
   <ion-segment-button value="Chit">
     <ion-label> CHIT </ion-label>
   </ion-segment-button>
-  <ion-segment-button value="KulukKal">
-    <ion-label> KULUKKAL </ion-label>
+  <ion-segment-button value="luckydraw">
+    <ion-label> LUCKYDRAW </ion-label>
   </ion-segment-button>
   <ion-segment-button value="mfi">
     <ion-label> MFI </ion-label>
@@ -20,7 +20,7 @@
 <ion-searchbar class="ion-margin-top" (ionChange)="SearchFunction($event)"></ion-searchbar>
 <ion-content>
   <ion-grid>
-    <ion-row *ngIf="segment == 'Chit' || 'KulukKal' || 'mfi' || 'loan'">
+    <ion-row *ngIf="segment == 'Chit' || 'luckydraw' || 'mfi' || 'loan'">
       <ng-container *ngFor="let item of filterArray; let i = index;">
         <ion-col size="12" size-sm="6" size-md="6" size-lg="4" *ngIf="segment == item.productType">
           <div>
@@ -223,7 +223,7 @@
                   <ion-label position="stacked">Product Type</ion-label>
                   <ion-select placeholder="Product Type" formControlName="productType">
                     <ion-select-option value="Chit">CHIT</ion-select-option>
-                    <ion-select-option value="KulukKal">KULUKKAL</ion-select-option>
+                    <ion-select-option value="luckydraw">LUCKYDRAW</ion-select-option>
                     <ion-select-option value="mfi">MFI</ion-select-option>
                     <ion-select-option value="loan">LOAN</ion-select-option>
                    

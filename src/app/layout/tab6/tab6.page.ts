@@ -40,6 +40,7 @@ export class Tab6Page implements OnInit {
     }
     ionViewWillEnter() {
         this.getProductDetails();
+        this.generatePaymentForm();
     }
     getProductDetails() {
         let cid = localStorage.getItem('customerId');
