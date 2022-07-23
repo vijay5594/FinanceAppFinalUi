@@ -4,7 +4,7 @@
       <ion-col>
         <h2>Customer</h2>
       </ion-col>
-      <ion-col style="margin-left: 3.3rem; margin-top: 10px">
+      <ion-col class="col-add">
         <ion-chip color="tertiary" (click)="addCustomerToProduct()">
           <ion-icon name="people" color="primary"></ion-icon>
           <ion-label color="teritary">Add To Customer</ion-label>
@@ -16,7 +16,7 @@
   <ion-item>
     <ion-row class="ion-margin-top">
       <div *ngFor="let item of _data | slice:0:1; let i = index;">
-        <ion-chip style="margin-left: 9rem; margin-top: 2px" color="tertiary">
+        <ion-chip class="chip-name" color="tertiary">
           <ion-label color="teritary">{{item.productName}}</ion-label>
         </ion-chip>
       </div>
@@ -43,7 +43,7 @@
         </ion-card>
         <ion-modal trigger="PayListDetails{{item.productCustomerId}}">
           <ng-template>
-            <div style="background-color: #001d6e" class="app-header">
+            <div class="app-header">
               <h1>Payment Details</h1>
             </div>
             <ion-content class="ion-padding">
@@ -57,7 +57,7 @@
                                         paymentForm.controls['paidAmount']?.touched">Payment Amount is required
                         *</span>
                     </ion-col>
-                    <ion-col style="visibility: hidden; display: none">
+                    <ion-col class="col-hidden">
                       <ion-input type="text" disabled formControlName="productCustomerId"
                         [(ngModel)]="item.productCustomerId"></ion-input>
                     </ion-col>

@@ -34,38 +34,38 @@ export class Tab2Page implements OnInit {
     ) {
         this.getCustomerDetails();
         this.generatePaymentForm();
-        this.customerList();
     }
+
     ngOnInit(): void {
     }
+
     ionViewWillEnter() {
         this.getCustomerDetails();
         this.generatePaymentForm();
-       
+
     }
+
     ionViewWillLeave() {
         this._data = null;
     }
+
     addCustomerToProduct() {
         this.userService.getProductId();
         this.router.navigate(['tabs/tab3']);
     }
+
     getCustomerDetails() {
         let pId = localStorage.getItem('productId');
         this.apiService.CustomerForProductDetails(pId).subscribe(data => {
             this._data = data;
         });
     }
+
     getHistory(data: any) {
         this.userService.PaymentId = data
         this.router.navigate(['tabs/tab4']);
     }
-    customerList() {
-        let pId = localStorage.getItem('productId');
-        this.apiService.ProductCustomer(pId).subscribe((data: any) => {
-            this.productCustomerList = data
-        });
-    }
+
     generatePaymentForm = () => {
         this.paymentForm = this.fb.group({
             productCustomerId: [this.PaymentId],
@@ -75,11 +75,10 @@ export class Tab2Page implements OnInit {
             collectedBy: [this.currentUser],
         });
     }
+
     payFormValue() {
         this.apiService.paymentDetails(this.paymentForm.value).subscribe(data => {
-            
             this.notificationService.success('Paid successfully')
-          
             this.router.navigate(['tabs/tab1']);
         },
             (error: Response) => {
@@ -91,10 +90,11 @@ export class Tab2Page implements OnInit {
         this.modal.dismiss();
         this.paymentForm.reset();
     }
+
     onClose() {
         this.modal.dismiss();
-        
     }
+
     thisFormValid() {
         if (this.paymentForm.valid) {
             return true

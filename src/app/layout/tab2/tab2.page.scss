@@ -4,16 +4,6 @@ ion-card {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.labelText {
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-.labelFont {
-  padding-left: 1.2rem;
-  font-size: 1rem;
-}
-
 ion-input,
 ion-textarea,
 ion-select {
@@ -36,12 +26,6 @@ ion-label {
   color: #001d6e !important;
 }
 
-.saveButton {
-  width: 6.5rem;
-  height: 3rem;
-  font-weight: 700;
-}
-
 ion-card {
   border-radius: 18px;
   box-shadow: #64646f33 0 7px 29px;
@@ -56,21 +40,31 @@ h1 {
   font-weight: 800;
 }
 
+h2 {
+  color: #001d6e;
+  font-weight: 800;
+}
+
 h3 {
   color: #001d6e;
   font-weight: 800;
   text-align: center;
 }
 
-h2 {
-  color: #001d6e;
-  font-weight: 800;
+.labelText {
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-@media (min-width: 500px) {
-  ion-modal {
-    --height: 600px;
-  }
+.labelFont {
+  padding-left: 1.2rem;
+  font-size: 1rem;
+}
+
+.saveButton {
+  width: 6.5rem;
+  height: 3rem;
+  font-weight: 700;
 }
 
 .text-danger {
@@ -82,4 +76,30 @@ h2 {
 
 .isDataNot {
   text-align: center !important;
+}
+
+.col-add {
+  margin-left: 3.3rem;
+  margin-top: 10px;
+}
+
+.chip-name {
+  margin-left: 9rem;
+  margin-top: 2px;
+
+}
+
+.col-hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.app-header {
+  background-color: #001d6e
+}
+
+@media (min-width: 500px) {
+  ion-modal {
+    --height: 600px;
+  }
 }

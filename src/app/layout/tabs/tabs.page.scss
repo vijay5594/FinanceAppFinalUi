@@ -18,10 +18,24 @@ ion-item {
   margin: 0 0 0 0;
 }
 
+ion-header {
+  --background: #001d6e;
+}
+
 .navbarcolor {
   --background: #001d6e;
 }
 
 span {
   font-family: fantasy;
+}
+
+.title-head {
+  color: white;
+  text-align: center;
+}
+
+p {
+  color: #001d6e;
+  margin: 0 0 0 0;
 }

@@ -20,6 +20,7 @@ export class Tab7Page implements OnInit {
 
     ngOnInit() {
     }
+    
     _payload: any
     from: string = moment().format();
     to: string = moment().format();
@@ -34,6 +35,7 @@ export class Tab7Page implements OnInit {
     totalAmount: any;
     currentDate: any;
     payDetails: any;
+
     convert(data: any) {
         return moment(data).format('MMMM Do YYYY');
     }

@@ -32,8 +32,8 @@
                 </ion-chip>
                 <ion-modal trigger="trigger-button{{i}}">
                   <ng-template>
-                    <div style="background-color: #001d6e" class="app-header">
-                      <h1 style="color: #fff">Edit Product</h1>
+                    <div class="app-header">
+                      <h1>Edit Product</h1>
                     </div>
                     <ion-content id="style-1">
                       <ion-grid>
@@ -51,9 +51,9 @@
                               </span>
                               <span class="text-danger" *ngIf="!updateForm.controls['productName'].valid && 
                             updateForm.controls['productName']?.touched">
-                                Quantity is required *</span>
+                                ProductName is required *</span>
                             </ion-col>
-                            <ion-col style="visibility: hidden; display: none">
+                            <ion-col class="col-hidden">
                               <ion-input type="number" [(ngModel)]="item.productId" formControlName="productId">
                               </ion-input>
                             </ion-col>
@@ -196,8 +196,8 @@
   </ion-grid>
   <ion-modal trigger="trigger">
     <ng-template>
-      <div style="background-color: #001d6e" class="app-header">
-        <h1 style="color: #fff">Add Product</h1>
+      <div class="app-header">
+        <h1>Add Product</h1>
       </div>
       <ion-content>
         <ion-grid class="ion-no-margin scrollbar" id="style-1">
@@ -226,7 +226,7 @@
                     <ion-select-option value="luckydraw">LUCKYDRAW</ion-select-option>
                     <ion-select-option value="mfi">MFI</ion-select-option>
                     <ion-select-option value="loan">LOAN</ion-select-option>
-                   
+
                   </ion-select>
                 </ion-item>
                 <span class="text-danger" *ngIf="!productDetailsForm.controls['productType'].valid && 

@@ -35,8 +35,8 @@ export class Tab3Page implements OnInit {
     arrayData = []
     searchvalue: boolean = false;
     role: string = localStorage.getItem('Role');
-    isShown:boolean=true;
-    
+    isShown: boolean = true;
+
     constructor(
         private apiService: ApiService,
         private router: Router,
@@ -53,8 +53,10 @@ export class Tab3Page implements OnInit {
         this.generateDetails();
         this.loadMorePosts('');
     }
+
     ngOnInit(): void {
     }
+
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
     ionViewWillEnter() {
@@ -63,13 +65,42 @@ export class Tab3Page implements OnInit {
         this.getCustomerDetail();
         this.show();
     }
-    ionViewWillLeave() {
+    generateCustomerForm = () => {
+        this.customerForm = this.fb.group({
+            customerName: ['', Validators.required],
+            guarantorName: ['', Validators.required],
+            address: ['', Validators.required],
+            mobileNumber: ['', [Validators.required]],
+            additionalMobileNumber: [''],
+            aadharNumber: ['', Validators.required],
+            referredBy: ['', Validators.required],
+            fileUpload: ['', Validators.required],
+            createdBy: [this.currentUser],
+            dateOfCreated: [moment().format()]
+
+        });
     }
+    generateDetails = () => {
+        this.updateForm = this.fb.group({
+            customerId: [''],
+            customerName: ['', Validators.required],
+            guarantorName: ['', Validators.required],
+            address: ['', Validators.required],
+            mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+            additionalMobileNumber: [''],
+            aadharNumber: ['', Validators.required],
+            referredBy: ['', Validators.required],
+            attachmentId: [''],
+            attachmentName: [''],
+        });
+    }
+
     getCustomerDetail = () => {
         this.apiService.getProductDetailsById(localStorage.getItem('productId')).subscribe(data => {
             this.pName = data[0] ?.productName;
         });
     }
+
     loadMorePosts(event) {
         this.apiService.CustomerPagination(this.page).subscribe((data: any) => {
             setTimeout(() => {
@@ -82,6 +113,7 @@ export class Tab3Page implements OnInit {
             }, 800);
         });
     }
+
     doInfinite(event) {
         if (event) {
             let value = event.target.value;
@@ -95,18 +127,19 @@ export class Tab3Page implements OnInit {
             this.loadMorePosts(event);
         }
     }
+
     getFileDownload(id: any) {
-        this.apiService.getFileDownload(id).subscribe(event=>{
+        this.apiService.getFileDownload(id).subscribe(event => {
             FileSaver.saveAs(event);
         });
-            
     }
-    show(){
+
+    show() {
         if (this.role == 'operator') {
-               
             this.isShown = false;
         }
     }
+
     async presentAlertConfirm(data: any, custName: any) {
         let payload = {
             'createdBy': this.currentUser,
@@ -142,42 +175,15 @@ export class Tab3Page implements OnInit {
         });
         await alert.present();
     }
+
     customerHistory(data: any) {
         this.userService.customer = data;
         this.apiService.productForCustomerDetails(data).subscribe(data => {
             this.router.navigate(['/tabs/tab6']);
         });
     }
-    generateCustomerForm = () => {
-        this.customerForm = this.fb.group({
-            customerName: ['', Validators.required],
-            guarantorName: ['', Validators.required],
-            address: ['', Validators.required],
-            mobileNumber: ['', [Validators.required]],
-            additionalMobileNumber: [''],
-            aadharNumber: ['', Validators.required],
-            referredBy: ['', Validators.required],
-            fileUpload: ['', Validators.required],
-            createdBy: [this.currentUser],
-            dateOfCreated: [moment().format()]
-
-        });
-    }
-    generateDetails = () => {
-        this.updateForm = this.fb.group({
-            customerId: [''],
-            customerName: ['', Validators.required],
-            guarantorName: ['', Validators.required],
-            address: ['', Validators.required],
-            mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-            additionalMobileNumber: [''],
-            aadharNumber: ['', Validators.required],
-            referredBy: ['', Validators.required],
-            attachmentId: [''],
-            attachmentName: [''],
-        });
-    }
     get f() { return this.customerForm.controls; }
+
     save(customerForm: any) {
         customerForm.attachmentId = this.attachmentId;
         this.apiService.insertCustomer(this.customerForm.value).subscribe(data => {
@@ -189,6 +195,7 @@ export class Tab3Page implements OnInit {
             this.loadMorePosts('');
         });
     }
+
     uploadcandidateFile = (fileChangeEvent: any) => {
         const photo = fileChangeEvent.target.files[0];
         const formData = new FormData();
@@ -197,6 +204,7 @@ export class Tab3Page implements OnInit {
             this.attachmentId = file.attachmentId;
         });
     }
+
     CheckMobileNumber() {
         this.isShowError = false
         this.ischeckMobileNumber = true;
@@ -213,6 +221,7 @@ export class Tab3Page implements OnInit {
             });
         }
     }
+
     CheckAdharNumber() {
         this.isShowErrors = false
         this.ischeckAdharNumber = true;
@@ -229,17 +238,20 @@ export class Tab3Page implements OnInit {
             });
         }
     }
+
     validateNumber(e) {
         const keyCode = e.keyCode;
         if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8 && e.keyCode != 9) {
             e.preventDefault();
         }
     }
+
     onClose() {
         this.modal.dismiss();
         this.customerForm.reset();
         this.loadMorePosts('');
     }
+
     thisFormValid() {
         if (this.customerForm.valid) {
             return true
@@ -247,6 +259,7 @@ export class Tab3Page implements OnInit {
             return false
         }
     }
+
     updateCustomer(update: any) {
         this.apiService.updateCustomer(this.updateForm.value).subscribe(data => {
             this.toast.success('Added Successfully');

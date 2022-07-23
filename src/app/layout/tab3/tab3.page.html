@@ -18,7 +18,7 @@
             </ion-chip>
             <ion-modal trigger="edit-customer{{i}}">
               <ng-template>
-                <div style="background-color: #001d6e" class="app-header">
+                <div class="app-header">
                   <h1>Edit Customer</h1>
                 </div>
                 <ion-content>
@@ -192,8 +192,8 @@
 </ion-content>
 <ion-modal trigger="triggerbutton_one">
   <ng-template>
-    <div style="background-color: #001d6e" class="app-header">
-      <h1 style="color: #fff; font-weight: 800">Add customer</h1>
+    <div class="app-header">
+      <h1>Add customer</h1>
     </div>
     <ion-grid class="ion-no-margin scrollbar" id="style-1">
       <form (ngSubmit)="save(customerForm.value)" [formGroup]="customerForm">

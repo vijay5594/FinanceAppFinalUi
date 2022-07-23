@@ -18,15 +18,15 @@ export class Tab1Page implements OnInit {
     productDetails: any;
     segment: any;
     isShowError: boolean = false;
-    ischecproductName: boolean = true;
+    ischeckproductName: boolean = true;
     isUsername: boolean = true;
     productDetailsForm: FormGroup;
     updateForm: FormGroup;
     currentUser: string = localStorage.getItem('userName');
     productId: any = localStorage.getItem('productId');
     isShown: boolean = true;
-   
     role: string = localStorage.getItem('Role');
+
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -39,18 +39,19 @@ export class Tab1Page implements OnInit {
         this.updateProductForm();
         this.getDetails();
     }
+
     ngOnInit(): void {
         this.segment = 'Chit';
 
     }
+
     ionViewWillEnter() {
         this.generateProductForm();
         this.updateProductForm();
         this.getDetails();
         this.show();
-       
-
     }
+
     generateProductForm = () => {
         this.productDetailsForm = this.fb.group({
             productName: ['', Validators.required],
@@ -64,6 +65,7 @@ export class Tab1Page implements OnInit {
             startDate: [moment().format()]
         });
     }
+
     updateProductForm = () => {
         this.updateForm = this.fb.group({
             productId: [''],
@@ -77,6 +79,7 @@ export class Tab1Page implements OnInit {
 
         });
     }
+
     addProductDetails() {
         this.apiService.insertProduct(this.productDetailsForm.value).subscribe((data: any) => {
             this.productDetailsForm.reset();
@@ -87,39 +90,41 @@ export class Tab1Page implements OnInit {
         });
         this.notificationService.success('Product Details Saved Successfully');
     }
+
     getDetails() {
         this.apiService.getProductDetails().subscribe((data: any) => {
-            console.log(data,"dsdgds")
             this.productDetails = data;
             this.filterArray = data;
-            
         });
     }
-    show(){
+
+    show() {
         if (this.role == 'operator') {
-               
             this.isShown = false;
         }
     }
+
     segmentChanged(ev: any) {
         this.segment = ev.detail.value;
     }
+
     checkProduct() {
         this.isShowError = false
-        this.ischecproductName = true;
+        this.ischeckproductName = true;
         if (this.f.productName.invalid) {
             return;
         } else {
             this.apiService.existProductName(this.f.productName.value).subscribe(data => {
                 if (data['message'] == 'You Can Enter') {
-                    this.ischecproductName = false
+                    this.ischeckproductName = false
                 } else {
-                    this.ischecproductName = true;
+                    this.ischeckproductName = true;
                     this.isShowError = true
                 }
             });
         }
     }
+
     SearchFunction(event) {
         let val = event.target.value;
         this.filterArray = this.productDetails;
@@ -132,11 +137,13 @@ export class Tab1Page implements OnInit {
     convert(data: any): string {
         return moment(data).format('D-MMM-YYYY');
     }
+
     onClose() {
         this.modal.dismiss();
         this.productDetailsForm.reset();
         this.getDetails();
     }
+
     thisFormValid() {
         if (this.productDetailsForm.valid) {
             return true
@@ -144,12 +151,14 @@ export class Tab1Page implements OnInit {
             return false
         }
     }
+
     getAllCustomerDetails(data: any) {
         this.userService.Product = data
         this.apiService.CustomerForProductDetails(data).subscribe(data => {
             this.router.navigate(['tabs/tab2'])
         });
     }
+
     updateProduct(updateProductDetailsForm: any) {
         this.apiService.updateProduct(this.updateForm.value).subscribe(data => {
             this.toast.success('Updated sucessfully');
@@ -162,6 +171,7 @@ export class Tab1Page implements OnInit {
                 }
             });
     }
+
     statusForm(event) {
         this.IsStatus = event.target.value;
         this.productDetails = {
@@ -169,5 +179,4 @@ export class Tab1Page implements OnInit {
             IsStatus: this.IsStatus
         }
     }
-   
 }

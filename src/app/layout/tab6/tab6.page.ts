@@ -34,19 +34,14 @@ export class Tab6Page implements OnInit {
     ) {
         this.getProductDetails();
         this.generatePaymentForm();
-        this.customerList();
-    }
+      }
+
     ngOnInit(): void {
     }
+
     ionViewWillEnter() {
         this.getProductDetails();
         this.generatePaymentForm();
-    }
-    getProductDetails() {
-        let cid = localStorage.getItem('customerId');
-        this.apiService.productForCustomerDetails(cid).subscribe(data => {
-            this._data = data;
-        });
     }
     generatePaymentForm = () => {
         this.paymentForm = this.fb.group({
@@ -57,18 +52,27 @@ export class Tab6Page implements OnInit {
             collectedBy: [this.currentUser],
         });
     }
+    
+    getProductDetails() {
+        let cid = localStorage.getItem('customerId');
+        this.apiService.productForCustomerDetails(cid).subscribe(data => {
+            this._data = data;
+        });
+    }
+
     payFormValue() {
         this.apiService.paymentDetails(this.paymentForm.value).subscribe(data => {
             this.notificationService.success('Paid successfully')
-
-            this.router.navigate(['tabs/tab1']);
+        this.router.navigate(['tabs/tab1']);
         });
         this.modal.dismiss();
         this.paymentForm.reset();
     }
+
     onClose() {
         this.modal.dismiss();
     }
+
     thisFormValid() {
         if (this.paymentForm.valid) {
             return true
@@ -76,14 +80,9 @@ export class Tab6Page implements OnInit {
             return false
         }
     }
+
     getHistory(data: any) {
         this.userService.PaymentId = data
         this.router.navigate(['tabs/tab4']);
     }
-    customerList() {
-        let pId = this.customerId;
-        this.apiService.ProductCustomer(pId).subscribe((data: any) => {
-            this.productCustomerList = data
-        });
-    }
-}
+  }

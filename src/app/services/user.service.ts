@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -20,54 +19,44 @@ export class UserService {
     constructor() {
         this.load();
     }
-
     load = () => {
         if (this.isValid()) {
             const user = localStorage.getItem('userId');
             if (user) {
                 this._user = user;
             }
-
             const iSuperUser = localStorage.getItem('isSuperUser');
             if (iSuperUser) {
                 this._isSuperUser = iSuperUser === 'true';
             }
-
         }
     }
 
     isValid = () => {
         const user = localStorage.getItem('userName');
-
         if (!user) {
             return false;
         }
-
         return true;
     }
 
     get User(): string {
         return this._user;
     }
-
     set User(user: string) {
         localStorage.setItem('userName', user);
         this._user = user;
     }
-
     get IsSuperUser(): boolean {
         return this._isSuperUser;
     }
-
     set IsSuperUser(flag: boolean) {
         localStorage.setItem('isSuperUser', flag + '');
         this._isSuperUser = flag;
     }
-
     get Role(): string {
         return this._role;
     }
-
     set Role(role: string) {
         localStorage.setItem('Role', role);
         this._role = role;
@@ -75,7 +64,6 @@ export class UserService {
     get Users(): any {
         return this._Users;
     }
-
     set Users(user: any) {
         localStorage.setItem('userId', user);
         this._Users = user;
@@ -83,11 +71,9 @@ export class UserService {
     reload() {
         window.location.reload();
     }
-
     get Product(): string {
         return this._ProductId;
     }
-
     set Product(user: string) {
         localStorage.setItem('productId', user);
         this._ProductId = user;
@@ -95,28 +81,23 @@ export class UserService {
     get customer(): string {
         return this._customer;
     }
-
     set customer(user: string) {
         localStorage.setItem('customerId', user);
         this._customer = user;
     }
-
     get PaymentId(): string {
         return this._payment;
     }
-
     set PaymentId(user: string) {
         localStorage.setItem('productCustomerId', user);
         this._payment = user;
     }
-
     setProductId(params: any) {
         this.currentProductId = params;
     }
     getProductId(): string {
         return this.currentProductId;
     }
-
     setCustomerId(params: any) {
         this.CurrentCustomerId = params;
     }
@@ -129,5 +110,4 @@ export class UserService {
     getUserId(): string {
         return this.UserId;
     }
-
 }

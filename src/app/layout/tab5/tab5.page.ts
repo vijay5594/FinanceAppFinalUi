@@ -5,13 +5,14 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
+
 @Component({
     selector: 'app-tab5',
     templateUrl: './tab5.page.html',
     styleUrls: ['./tab5.page.scss'],
 })
-export class Tab5Page implements OnInit {
 
+export class Tab5Page implements OnInit {
     loginForm: FormGroup;
     isShowError: boolean = false;
     isUsername: boolean = true;
@@ -20,7 +21,7 @@ export class Tab5Page implements OnInit {
     currentUser: string = localStorage.getItem('userName');
     UserId: string = localStorage.getItem('userId');
     isShown: boolean = true;
-    
+
     constructor(
         private apiService: ApiService,
         private modal: ModalController,
@@ -39,6 +40,7 @@ export class Tab5Page implements OnInit {
     ngOnInit() {
 
     }
+
     generateLoginForm = () => {
         this.loginForm = this.fb.group({
             userName: ['', Validators.required],
@@ -49,6 +51,7 @@ export class Tab5Page implements OnInit {
             address: ['', Validators.required]
         });
     }
+
     updateLoginForm = () => {
         this.updateUserForm = this.fb.group({
             userId: [''],
@@ -60,6 +63,7 @@ export class Tab5Page implements OnInit {
             address: ['', Validators.required]
         })
     }
+
     addNewUser() {
         this.apiService.addUser(this.loginForm.value).subscribe(() => {
             this.loginForm.reset();
@@ -67,20 +71,18 @@ export class Tab5Page implements OnInit {
                 window.location.reload();
             });
         });
-
     }
-    GetAllUsers() {
 
+    GetAllUsers() {
         this.apiService.GetUser(this.UserId).subscribe(data => {
-         
-             this.userDetails = data;
-          
+            this.userDetails = data;
             if (this.userDetails.role == 'operator') {
                 this.userDetails = Array.of(this.userDetails);
                 this.isShown = false;
             }
         });
     }
+
     onClose() {
         this.modal.dismiss();
         this.loginForm.reset();
@@ -101,7 +103,6 @@ export class Tab5Page implements OnInit {
             return;
         } else {
             this.apiService.existUserName(this.s.userName.value).subscribe(userData => {
-                console.log(userData, "fdfdfdsfg")
                 if (userData['message'] == 'You Can Enter') {
                     this.isUsername = false
                 } else {
@@ -112,15 +113,16 @@ export class Tab5Page implements OnInit {
         }
     }
     get s() { return this.loginForm.controls; }
+
     validateNumber(e) {
         const keyCode = e.keyCode;
         if (((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) && e.keyCode != 8 && e.keyCode != 9) {
             e.preventDefault();
         }
     }
+
     updateUser(update: any) {
         this.apiService.updateUser(this.updateUserForm.value).subscribe(data => {
-            console.log(data, "ahuahahg")
             this.toast.success('Updated Successfully');
             this.modal.dismiss();
             this.GetAllUsers();
@@ -132,7 +134,6 @@ export class Tab5Page implements OnInit {
     }
 
     async deleteUser(data: any, uname: any) {
-
         const alert = await this.alertController.create({
             cssClass: "my-custom-class",
             message: "Are you sure want to Delete " + uname + " ?",
@@ -148,18 +149,14 @@ export class Tab5Page implements OnInit {
                     text: "Okay",
                     handler: () => {
                         this.apiService.deleteUser(data).subscribe(() => {
-
                             this.toast.success('Deleted Successfully');
                             this.GetAllUsers();
                             this.router.navigate(['/tabs/tab1']);
                         });
-
                     }
-
                 }
             ]
         });
         await alert.present();
     }
-
 }

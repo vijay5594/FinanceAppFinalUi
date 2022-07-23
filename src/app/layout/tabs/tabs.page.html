@@ -1,29 +1,23 @@
-<ion-header class="ion-no-border" style="--background: #001d6e">
+<ion-header class="ion-no-border">
   <ion-item class="navbarcolor">
     <ion-avatar slot="end">
       <img src="../../../assets/man2.png" id="hover-trigger" />
     </ion-avatar>
-    <ion-label style="color: white; text-align: center"
-      >SK ENTERPRISES</ion-label
-    >
+    <ion-label class="title-head">SK ENTERPRISES</ion-label>
   </ion-item>
 </ion-header>
 <ion-popover trigger="hover-trigger" trigger-action="hover">
   <ng-template>
     <ion-item lines="none">
       <ion-icon slot="start" name="person"></ion-icon>
-      <p style="color: #001d6e; margin: 0 0 0 0">{{ currentUser }}</p>
+      <p>{{ currentUser }}</p>
     </ion-item>
     <ion-item lines="none">
       <ion-icon slot="start" name="desktop"></ion-icon>
-      <p style="color: #001d6e; margin: 0 0 0 0">{{ role }}</p>
+      <p>{{ role }}</p>
     </ion-item>
     <ion-item lines="none">
-      <ion-button
-        (click)="logout()"
-        style="padding-right: 10px"
-        class="primary"
-      >
+      <ion-button (click)="logout()" style="padding-right: 10px" class="primary">
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         Logout
       </ion-button>

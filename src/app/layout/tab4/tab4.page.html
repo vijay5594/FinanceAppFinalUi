@@ -3,10 +3,10 @@
   <h5 *ngIf="_data == false" class="isDataNot ion-margin-top">No Data Found</h5>
   <div *ngFor="let item of _data | slice:0:1; let i = index;">
     <ion-text color="primary">
-      <h4 style="text-align: right" class="ion-margin">
+      <h4 class="ion-margin">
         {{ item.customerName }}
       </h4>
-      <h6 style="text-align: right" class="ion-margin">
+      <h6 class="ion-margin">
         {{ item.productName }}
       </h6>
     </ion-text>

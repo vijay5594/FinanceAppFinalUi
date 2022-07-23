@@ -4,23 +4,6 @@ ion-label {
   color: #001d6e !important;
 }
 
-.saveButton {
-  width: 7.5rem;
-  height: 3rem;
-  font-weight: 700;
-}
-
-span {
-  font-weight: 800;
-}
-
-.text-danger {
-  font-weight: 800 bold !important;
-  color: #f03a3a;
-  margin: 1.5rem;
-  margin-bottom: 10rem !important;
-}
-
 ion-input,
 ion-textarea,
 ion-select {
@@ -29,6 +12,42 @@ ion-select {
   border: 0.5px solid #c7d1ef;
   --padding-start: 15px !important;
   background-color: #ffffff;
+}
+
+ion-item {
+  --inner-border-width: 0;
+  padding-right: 10px;
+}
+
+ion-card {
+  border-radius: 18px;
+  box-shadow: #64646f33 0 7px 29px;
+}
+
+span {
+  font-weight: 800;
+}
+
+p {
+  color: #001d6e;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.saveButton {
+  width: 7.5rem;
+  height: 3rem;
+  font-weight: 700;
+}
+
+.text-danger {
+  font-weight: 800 bold !important;
+  color: #f03a3a;
+  margin: 1.5rem;
+  margin-bottom: 10rem !important;
 }
 
 .buttonCenter {
@@ -41,9 +60,17 @@ ion-select {
   margin: 1.5rem;
 }
 
-ion-item {
-  --inner-border-width: 0;
-  padding-right: 10px;
+.app-header {
+  background-color: #001d6e
+}
+
+.paddingOnSide {
+  padding: 0 30px 0 20px;
+}
+
+.col-hidden {
+  visibility: hidden;
+  display: none;
 }
 
 #style-1::-webkit-scrollbar {
@@ -58,26 +85,8 @@ ion-item {
   background-color: #22577e;
 }
 
-ion-card {
-  border-radius: 18px;
-  box-shadow: #64646f33 0 7px 29px;
-}
-
-p {
-  color: #001d6e;
-}
-
-h1 {
-  color: #ffffff;
-  font-weight: 800;
-}
-
 @media (min-width: 500px) {
   ion-modal {
     --height: 600px;
   }
-}
-
-.paddingOnSide {
-  padding: 0 30px 0 20px;
 }

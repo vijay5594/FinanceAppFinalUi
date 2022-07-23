@@ -1,4 +1,33 @@
-img {
+ion-item {
+  border: 1px solid #16438b !important;
+  border-radius: 5px;
+  --background: transparent;
+  height: 44px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: flex;
+
+  ion-icon {
+    border-right: 1px solid #16438b;
+    font-size: 20px;
+    color: #16438b;
+    height: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    padding: 0 12px 0;
+    margin-left: -9px;
+  }
+
+  ion-select {
+    margin: auto;
+  }
+}
+  ion-input {
+    border: 1px solid #16438b !important;
+    border-radius: 5px;
+  }
+
+  img {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -17,12 +46,6 @@ img {
   overflow: hidden;
   position: relative;
   top: 15%;
-
-  ion-input {
-    border: 1px solid #16438b !important;
-    border-radius: 5px;
-  }
-
   form {
     margin-top: 20px !important;
   }
@@ -68,29 +91,4 @@ img {
 
 .login-card a:hover {
   opacity: 1;
-}
-
-ion-item {
-  border: 1px solid #16438b !important;
-  border-radius: 5px;
-  --background: transparent;
-  height: 44px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  display: flex;
-
-  ion-icon {
-    border-right: 1px solid #16438b;
-    font-size: 20px;
-    color: #16438b;
-    height: 100%;
-    height: -moz-available;
-    height: -webkit-fill-available;
-    padding: 0 12px 0;
-    margin-left: -9px;
-  }
-
-  ion-select {
-    margin: auto;
-  }
 }

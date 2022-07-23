@@ -12,7 +12,6 @@ import { ApiService } from 'src/app/services/api.service';
     styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
     loginForm: FormGroup;
 
     constructor(private router: Router,
@@ -27,16 +26,17 @@ export class LoginPage implements OnInit {
 
     ngOnInit() {
     }
+
     generateLoginForm = () => {
         this.loginForm = this.fb.group({
             userName: ['', Validators.required],
             password: ['', Validators.required]
         });
     }
+
     doLogin(loginForm: any) {
         this.apiService.doLogin(this.loginForm.value).subscribe((data) => {
             if (data) {
-                console.log(data);
                 this.userService.User = data.userName;
                 this.userService.Role = data.role;
                 this.userService.Users = data.userId;
@@ -55,11 +55,11 @@ export class LoginPage implements OnInit {
             }
         },
             (error: any) => {
-                console.log(error);
                 this.loadingService.hide();
                 this.toast.error('Unable to validate user. Please try agian after sometime.');
             });
     }
+    
     thisFormValid() {
         if (this.loginForm.valid) {
             return true

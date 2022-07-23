@@ -2,7 +2,7 @@
 <h5 *ngIf="_data == false" class="isDataNot ion-margin-top">No Data Found</h5>
 <div *ngFor="let item of _data | slice:0:1; let i = index;">
   <ion-text color="primary">
-    <h4 style="text-align: right" class="ion-margin">
+    <h4 class="ion-margin">
       {{ item.customerName }}
     </h4>
   </ion-text>
@@ -18,25 +18,18 @@
             </ion-label>
           </ion-item>
           <ion-item>
-            <ion-chip
-              color="tertiary"
-              (click)="getHistory(item.productCustomerId)"
-            >
+            <ion-chip color="tertiary" (click)="getHistory(item.productCustomerId)">
               <ion-icon name="people" color="primary"></ion-icon>
               <ion-label color="teritary">Details</ion-label>
             </ion-chip>
-            <ion-chip
-              color="tertiary"
-              slot="end"
-              id="subscriberList{{item.productCustomerId}}"
-            >
+            <ion-chip color="tertiary" slot="end" id="subscriberList{{item.productCustomerId}}">
               <ion-label color="teritary">Colllect</ion-label>
             </ion-chip>
           </ion-item>
         </ion-card>
         <ion-modal trigger="subscriberList{{item.productCustomerId}}">
           <ng-template>
-            <div style="background-color: #001d6e" class="app-header">
+            <div class="app-header">
               <h1>Payment Details</h1>
             </div>
             <ion-content class="ion-padding">
@@ -45,72 +38,39 @@
                   <ion-row>
                     <ion-col>
                       <ion-label>Amount</ion-label>
-                      <ion-input
-                        type="text"
-                        formControlName="paidAmount"
-                      ></ion-input>
-                      <span
-                        class="text-danger"
-                        *ngIf="!paymentForm.controls['paidAmount'].valid && 
-                                paymentForm.controls['paidAmount']?.touched"
-                        >Payment Amount is required *</span
-                      >
+                      <ion-input type="text" formControlName="paidAmount"></ion-input>
+                      <span class="text-danger" *ngIf="!paymentForm.controls['paidAmount'].valid && 
+                                paymentForm.controls['paidAmount']?.touched">Payment Amount is required *</span>
                     </ion-col>
-                    <ion-col style="visibility: hidden; display: none">
-                      <ion-input
-                        type="text"
-                        disabled
-                        formControlName="productCustomerId"
-                        [(ngModel)]="item.productCustomerId"
-                      ></ion-input>
+                    <ion-col class="col-hidden">
+                      <ion-input type="text" disabled formControlName="productCustomerId"
+                        [(ngModel)]="item.productCustomerId"></ion-input>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
                       <ion-label>Payment Type</ion-label>
-                      <ion-select
-                        placeholder="Payment Type"
-                        formControlName="paymentType"
-                      >
+                      <ion-select placeholder="Payment Type" formControlName="paymentType">
                         <ion-select-option value="Cash">Cash</ion-select-option>
-                        <ion-select-option value="Online"
-                          >Online</ion-select-option
-                        >
+                        <ion-select-option value="Online">Online</ion-select-option>
                       </ion-select>
-                      <span
-                        class="text-danger"
-                        *ngIf="!paymentForm.controls['paymentType'].valid && 
-                                    paymentForm.controls['paymentType']?.touched"
-                        >Product Type is required *</span
-                      >
+                      <span class="text-danger" *ngIf="!paymentForm.controls['paymentType'].valid && 
+                                    paymentForm.controls['paymentType']?.touched">Product Type is required *</span>
                     </ion-col>
                   </ion-row>
                   <ion-row>
                     <ion-col>
                       <ion-label>Collected By</ion-label>
-                      <ion-input
-                        type="text"
-                        disabled
-                        formControlName="collectedBy"
-                      ></ion-input>
+                      <ion-input type="text" disabled formControlName="collectedBy"></ion-input>
                     </ion-col>
                   </ion-row>
                   <ion-row class="ion-justify-content-center ion-margin-top">
                     <ion-col>
-                      <ion-button
-                        expand="block"
-                        (click)="onClose()"
-                        color="danger"
-                      >
-                        Cancel</ion-button
-                      >
+                      <ion-button expand="block" (click)="onClose()" color="danger">
+                        Cancel</ion-button>
                     </ion-col>
                     <ion-col>
-                      <ion-button
-                        type="Submit"
-                        expand="block"
-                        [disabled]="!thisFormValid()"
-                      >
+                      <ion-button type="Submit" expand="block" [disabled]="!thisFormValid()">
                         ₹ &nbsp;Pay
                       </ion-button>
                     </ion-col>

@@ -67,7 +67,7 @@ export class ApiService {
         return this.http.delete(url);
     }
     CheckUser = (params: any): Observable<any> => {
-        const url = this.loginApiUrl('CheckUser?id=' + params);
+        const url = this.loginApiUrl('NonExistingUserLogout?id=' + params);
         return this.http.get(url);
     }
     existUserName(exist: any) {
@@ -91,7 +91,7 @@ export class ApiService {
         return this.http.put(url, params);
     }
     getProductDetailsById(params: any): Observable<any> {
-        const url = this.getProductApiUrl('ProductId?id=');
+        const url = this.getProductApiUrl('GetProductName?id=');
         return this.http.get(url + params);
     }
 
@@ -133,20 +133,12 @@ export class ApiService {
         return this.http.post(url, params);
     }
     CustomerForProductDetails = (id: any): Observable<any> => {
-        const url = this.getProductCustomerApiUrl('FliterCustomerDetailsForProduct?id=');
+        const url = this.getProductCustomerApiUrl('CustomerDetailsForProduct?id=');
         return this.http.get(url + id);
     }
     productForCustomerDetails = (id: any): Observable<any> => {
-        const url = this.getProductCustomerApiUrl('FliterProductForCustomer?id=');
+        const url = this.getProductCustomerApiUrl('ProductDetailsForCustomer?id=');
         return this.http.get(url + id);
-    }
-    ProductCustomer = (id: any): Observable<any> => {
-        const url = this.getProductCustomerApiUrl('OrderByProduct?ProductId=');
-        return this.http.get(url + id);
-    }
-    getProductCustomer = (): Observable<any> => {
-        const url = this.getProductCustomerApiUrl('AllproductCustomer');
-        return this.http.get(url);
     }
     CustomerPayHistory = (id: any): Observable<any> => {
         const url = this.getPaymentApiUrl('CustomerPayHistory?id=');

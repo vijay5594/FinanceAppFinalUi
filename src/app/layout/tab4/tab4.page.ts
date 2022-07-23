@@ -10,7 +10,6 @@ import { UserService } from 'src/app/services/user.service';
     templateUrl: 'tab4.page.html',
     styleUrls: ['tab4.page.scss']
 })
-
 export class Tab4Page {
     _data: any;
     data: any;
@@ -23,18 +22,22 @@ export class Tab4Page {
     ) {
         this.getPaymentHistory();
     }
+
     ionViewWillEnter() {
         this.getPaymentHistory();
     }
+
     ionViewWillLeave() {
         delete this._data
     }
+
     getPaymentHistory() {
         let pid = localStorage.getItem('productCustomerId');
         this.apiService.CustomerPayHistory(pid).subscribe(data => {
             this._data = data;
         });
     }
+
     convert(data: any): string {
         return moment(data).format('D-MMM-YYYY');
     }

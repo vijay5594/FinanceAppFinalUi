@@ -20,6 +20,24 @@ ion-item {
   margin: 0 0 0 0;
 }
 
+ion-card {
+  border-radius: 18px;
+  box-shadow: #64646f33 0 7px 29px;
+}
+
+ion-icon {
+  font-size: 1.2rem;
+}
+
+p {
+  color: #001d6e;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: 800;
+}
+
 .text-danger {
   font-weight: 600;
   color: #f03a3a;
@@ -67,26 +85,6 @@ ion-item {
   display: none;
 }
 
-ion-card {
-  border-radius: 18px;
-  box-shadow: #64646f33 0 7px 29px;
-}
-
-p {
-  color: #001d6e;
-}
-
-h1 {
-  color: #ffffff;
-  font-weight: 800;
-}
-
-@media (min-width: 500px) {
-  ion-modal {
-    --height: 600px;
-  }
-}
-
 .paddingOnSide {
   padding: 0 30px 0 20px;
 }
@@ -95,10 +93,16 @@ h1 {
   text-align: center !important;
 }
 
-ion-icon {
-  font-size: 1.2rem;
-}
-
 .isDataNot {
   text-align: center !important;
+}
+
+.app-header {
+  background-color: #001d6e
+}
+
+@media (min-width: 500px) {
+  ion-modal {
+    --height: 600px;
+  }
 }
