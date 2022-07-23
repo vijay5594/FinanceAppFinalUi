@@ -45,7 +45,6 @@ export class ApiService {
     getPaymentApiUrl = (endpoint: string) => {
         return `${environment.baseURL}/${this.PaymentApi}/${endpoint}`;
     }
-
     doLogin = (params: any): Observable<any> => {
         const url = this.loginApiUrl('GetLogin');
         return this.http.post(url, params);
@@ -94,12 +93,10 @@ export class ApiService {
         const url = this.getProductApiUrl('GetProductName?id=');
         return this.http.get(url + params);
     }
-
     CustomerPagination(params: any) {
         const url = this.getCustomerApiUrl('CustomerPagination?PageNumber=' + params + '&PageSize=20');
         return this.http.get(url);
     }
-
     FilterCustomerSearch(params2: any) {
         const url = this.getCustomerApiUrl('CustomerPagination?PageSize=100&QuerySearch=' + params2);
         return this.http.get(url);
@@ -148,7 +145,6 @@ export class ApiService {
         const url = this.getPaymentApiUrl('PaymentDetails');
         return this.http.post(url, params);
     }
-
     getPayment = (id: any): Observable<any> => {
         const url = this.getPaymentApiUrl('getPaymentDetails?id=');
         return this.http.get(url + id);
@@ -161,5 +157,4 @@ export class ApiService {
         const url = this.getPaymentApiUrl('TotalAmount');
         return this.http.post(url, params);
     }
-
 }
